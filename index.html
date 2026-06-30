@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GARUDA — Kampot Fleur de Sel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold:    #d0a869;
+  --gold-lt: #e2c08a;
+  --wood:    #b3916b;
+  --dark:    #090a0c;
+  --slate:   #383b48;
+  --mid:     #1e202a;
+  --text:    rgba(243,239,229,0.92);
+  --dim:     rgba(243,239,229,0.70);
+  --muted:   rgba(243,239,229,0.45);
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Jost', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+/* ── BASE ─────────────────────────────────────────── */
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(to bottom, #090a0c 0%, #383b48 100%) fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* ── FIXED PAGE-WIDE BACKGROUND LAYERS ───────────── */
+.page-bg {
+  position: fixed; inset: 0;
+  z-index: 0; pointer-events: none;
+}
+
+/* STORY.png — salt harvesters, full page, always visible */
+.bg-story {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end; justify-content: center;
+  overflow: hidden;
+}
+.bg-story img {
+  width: 100%; max-width: 1100px;
+  height: auto;
+  filter: invert(1) grayscale(0.5) sepia(0.4) hue-rotate(200deg) saturate(1.8) brightness(0.58);
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+.bg-story::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 68% 68% at 50% 58%, transparent 0%, rgba(9,10,12,0.92) 100%);
+}
+
+/* Full-page depth particles — fixed inside page-bg */
+.page-particles {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+
+/* ── SITE WRAPPER — sits above page-bg ─────────────── */
+.site-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAVIGATION ──────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 1.4rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.5s, padding 0.4s;
+}
+nav.scrolled {
+  background: rgba(9,10,12,0.90);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.9rem 3rem;
+}
+.nav-brand img { height: 44px; filter: brightness(10); }
+
+.nav-links { display: flex; gap: 2.8rem; list-style: none; }
+.nav-links a {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+  color: rgba(255,255,255,0.65); transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+
+.nav-cta {
+  font-family: var(--sans); font-size: 0.66rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  border: 1px solid var(--gold); color: var(--gold); padding: 0.55rem 1.5rem;
+  transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: #fff; }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; padding: 4px; cursor: pointer;
+}
+.hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; }
+
+/* ── HERO ─────────────────────────────────────────── */
+#hero {
+  position: relative; height: 100vh; min-height: 640px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse 72% 72% at 50% 48%, #393f44 0%, #090a0c 68%);
+}
+
+/* ── PAGE CORNER MOTIFS ──────────────────────────── */
+.page-corner {
+  position: absolute;
+  width: clamp(176px, 20.8vw, 320px);
+  z-index: 50;
+  pointer-events: none;
+}
+.page-corner img {
+  width: 100%; display: block;
+  filter: invert(1) sepia(1) saturate(2.5) hue-rotate(5deg) brightness(0.85);
+  mix-blend-mode: screen;
+  opacity: 0.75;
+}
+.page-corner--tl { top: 0; left: 0; }
+.page-corner--br { bottom: 0; right: 0; transform: scale(-1); }
+
+/* Logo watermark — ray is masked to logo alpha only */
+.hero-watermark {
+  position: absolute; inset: 0; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  transform: translateY(-13vh);
+}
+.logo-wrap {
+  position: relative;
+  width: 93%; max-width: 1170px;
+  /* Everything inside clipped to logo's own alpha channel */
+  -webkit-mask-image: url('Brand_assets/LOGO_01.png');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: url('Brand_assets/LOGO_01.png');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+.logo-wrap img {
+  display: block; width: 100%; opacity: 0.13;
+}
+.logo-ray {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.logo-ray::before {
+  content: '';
+  position: absolute; top: -60%; left: 0;
+  width: 24%; height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20) 50%, transparent);
+  transform: translateX(-200%) skewX(-12deg);
+  animation: lightRay 15s ease-in-out infinite;
+}
+
+/* Dark vignette — above watermark, below content */
+.hero-vignette {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 42%, transparent 28%, rgba(0,0,0,0.38) 100%);
+}
+
+/* Sparkle layer */
+.sparkle-layer {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
+}
+
+/* Hero text content */
+.hero-content {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.4rem; text-align: center; padding: 0 2rem;
+  animation: fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Brand name — shine masked to text alpha only */
+.brand-wrap {
+  position: relative; display: inline-block;
+  -webkit-mask-image: url('Brand_assets/BRAND_NAME.png');
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: url('Brand_assets/BRAND_NAME.png');
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+.hero-brand { display: block; width: min(770px, 65vw); }
+.brand-ray {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.brand-ray::before {
+  content: '';
+  position: absolute; top: -15%; left: 0;
+  width: 38%; height: 130%;
+  background: linear-gradient(108deg, transparent 18%, rgba(255,252,200,0.95) 50%, transparent 82%);
+  transform: translateX(-180%) skewX(-22deg);
+  animation: goldShine 7s cubic-bezier(0.25,0.46,0.45,0.94) infinite;
+}
+
+.hero-brand-area {
+  position: relative;
+  display: inline-block;
+}
+.hero-brand-area::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 200%;
+  background: radial-gradient(ellipse 80% 55% at 50% 50%, rgba(208,168,105,0.14) 0%, transparent 70%);
+  pointer-events: none; z-index: -1;
+}
+
+.hero-rule {
+  width: 56px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-tagline {
+  font-family: var(--serif); font-size: clamp(0.95rem,2vw,1.15rem);
+  font-style: italic; font-weight: 300;
+  color: var(--dim); letter-spacing: 0.04em;
+  max-width: 400px; line-height: 1.6;
+}
+.hero-sub {
+  font-family: var(--sans); font-size: 0.6rem; font-weight: 400;
+  letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted);
+}
+.btn-hero {
+  display: inline-block; margin-top: 0.6rem;
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none;
+  border: 1px solid var(--gold); color: var(--gold); padding: 0.8rem 2.6rem;
+  transition: background 0.35s, color 0.35s;
+}
+.btn-hero:hover { background: var(--gold); color: #fff; }
+
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%); z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-family: var(--sans); font-size: 0.56rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--muted);
+  animation: bounceY 2.4s ease-in-out infinite;
+}
+.scroll-hint::after {
+  content: ''; display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin-top: 4px;
+}
+
+/* ── SHARED ───────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+.section-header { text-align: center; margin-bottom: 4.5rem; }
+
+.eyebrow {
+  display: block;
+  font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem,4.5vw,3.4rem);
+  font-weight: 300; line-height: 1.12; color: var(--text);
+}
+.section-title em { font-style: italic; }
+.section-rule {
+  width: 38px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.6rem auto 0;
+}
+
+/* ── COLLECTION ───────────────────────────────────── */
+#collection {
+  padding: 8rem 0;
+  background: transparent;
+  position: relative; overflow: hidden;
+}
+#collection::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 340px;
+  background: linear-gradient(to bottom, rgba(9,10,12,0.85) 0%, rgba(9,10,12,0.40) 45%, transparent 100%);
+  pointer-events: none; z-index: 5;
+}
+
+.collection-watermark {
+  position: absolute; inset: 0; pointer-events: none;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.collection-watermark img { width: 55%; opacity: 0.05; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 2rem; position: relative; z-index: 1;
+}
+.product-card {
+  background: linear-gradient(175deg, rgba(9,10,12,0.98) 0%, rgba(18,19,24,0.99) 100%);
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(208,168,105,0.35);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s;
+  box-shadow:
+    0 0 0 1px rgba(208,168,105,0.07),
+    0 20px 60px rgba(9,10,12,0.80),
+    0 0 28px rgba(208,168,105,0.08);
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 0 1px rgba(208,168,105,0.28),
+    0 40px 80px rgba(9,10,12,0.90),
+    0 0 60px rgba(208,168,105,0.20);
+}
+/* Inner gold border frame */
+.product-card::before {
+  content: '';
+  position: absolute; inset: 6px; z-index: 20; pointer-events: none;
+  border: 1px solid rgba(208,168,105,0.45);
+}
+/* Gold shimmer sweep at top edge */
+.product-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 21; pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(208,168,105,0.6) 22%, rgba(243,239,229,1) 50%, rgba(208,168,105,0.6) 78%, transparent 100%);
+  animation: cardTopShimmer 3.5s ease-in-out infinite;
+  transform-origin: center;
+}
+.product-card:nth-child(2)::after { animation-delay: 0.85s; }
+.product-card:nth-child(3)::after { animation-delay: 1.7s; }
+.product-card:nth-child(4)::after { animation-delay: 2.55s; }
+@keyframes cardTopShimmer {
+  0%, 100% { opacity: 0.2; transform: scaleX(0.4); }
+  50%       { opacity: 1;   transform: scaleX(1); }
+}
+/* Gold L-bracket corner elements (injected via JS) */
+.card-corner {
+  position: absolute; width: 14px; height: 14px; z-index: 22; pointer-events: none;
+}
+.card-corner-tl { top: 7px;  left: 7px;  border-top:    1.5px solid rgba(208,168,105,0.9); border-left:  1.5px solid rgba(208,168,105,0.9); }
+.card-corner-tr { top: 7px;  right: 7px; border-top:    1.5px solid rgba(208,168,105,0.9); border-right: 1.5px solid rgba(208,168,105,0.9); }
+.card-corner-bl { bottom: 7px; left: 7px;  border-bottom: 1.5px solid rgba(208,168,105,0.9); border-left:  1.5px solid rgba(208,168,105,0.9); }
+.card-corner-br { bottom: 7px; right: 7px; border-bottom: 1.5px solid rgba(208,168,105,0.9); border-right: 1.5px solid rgba(208,168,105,0.9); }
+.card-image { position: relative; overflow: hidden; aspect-ratio: 1/1; }
+.card-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.card-image::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(9,10,12,0.75) 0%, transparent 55%);
+}
+/* Per-product colour identity — accent bar at top of image */
+.card-image::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 2; pointer-events: none;
+}
+.product-card:nth-child(1) .card-image::before { background: linear-gradient(90deg, transparent, rgba(208,168,105,0.95), transparent); }
+.product-card:nth-child(2) .card-image::before { background: linear-gradient(90deg, transparent, rgba(179,145,107,0.90), transparent); }
+.product-card:nth-child(3) .card-image::before { background: linear-gradient(90deg, transparent, rgba(208,168,105,0.70), transparent); }
+.product-card:nth-child(4) .card-image::before { background: linear-gradient(90deg, transparent, rgba(243,239,229,0.80), transparent); }
+/* Matching bottom border accent */
+.product-card:nth-child(1) { border-bottom: 2px solid rgba(208,168,105,0.60); }
+.product-card:nth-child(2) { border-bottom: 2px solid rgba(179,145,107,0.60); }
+.product-card:nth-child(3) { border-bottom: 2px solid rgba(208,168,105,0.40); }
+.product-card:nth-child(4) { border-bottom: 2px solid rgba(243,239,229,0.45); }
+/* Per-product tag colours */
+.product-card:nth-child(1) .card-tag { color: #d0a869; }
+.product-card:nth-child(2) .card-tag { color: #b3916b; }
+.product-card:nth-child(3) .card-tag { color: #d0a869; opacity: 0.8; }
+.product-card:nth-child(4) .card-tag { color: #f3efe5; }
+.product-card:hover .card-image img { transform: scale(1.06); }
+.card-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: var(--sans); font-size: 0.55rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dark); background: var(--gold); padding: 0.3rem 0.7rem;
+}
+.card-body {
+  padding: 1.75rem 1.5rem; flex: 1; display: flex; flex-direction: column;
+}
+.card-tag {
+  font-family: var(--sans); font-size: 0.57rem; font-weight: 500;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.55rem;
+}
+.card-name {
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+  line-height: 1.15; color: rgba(243,239,229,0.92); margin-bottom: 0.9rem;
+}
+.card-name em { font-style: italic; }
+.card-desc {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 300;
+  color: rgba(243,239,229,0.52); line-height: 1.75; flex: 1;
+}
+.card-footer {
+  margin-top: 1.5rem; padding-top: 1.25rem;
+  border-top: 1px solid rgba(243,239,229,0.09);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-price { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-lt); }
+.btn-order {
+  font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  background: transparent; color: var(--gold);
+  border: 1px solid rgba(208,168,105,0.45); padding: 0.55rem 1.15rem;
+  cursor: pointer; transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.btn-order:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+/* ── GIFT BOX SECTION ─────────────────────────────── */
+#giftbox {
+  padding: 8rem 0;
+  background: transparent;
+  position: relative; overflow: hidden;
+}
+.giftbox-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.giftbox-photo-wrap {
+  position: relative;
+  height: 600px;
+  margin-left: calc(-2.5rem - 5vw);
+  overflow: hidden;
+}
+.giftbox-photo {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+  display: block;
+}
+.giftbox-photo-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.35) 0%, transparent 60%);
+  pointer-events: none;
+}
+.giftbox-text .eyebrow { text-align: left; }
+.giftbox-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem,3.5vw,3.2rem);
+  font-weight: 300; line-height: 1.1;
+  color: var(--text);
+}
+.giftbox-title em { font-style: italic; color: var(--gold-lt); }
+.giftbox-rule {
+  width: 38px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 1.8rem 0;
+}
+.giftbox-desc {
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 300;
+  color: var(--dim); line-height: 1.95; margin-bottom: 1.2rem;
+}
+.giftbox-contents {
+  list-style: none; margin: 1.5rem 0 2rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.giftbox-contents li {
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 300;
+  color: var(--dim); padding-left: 1.2rem; position: relative;
+  letter-spacing: 0.04em;
+}
+.giftbox-contents li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-family: var(--serif);
+}
+.giftbox-price-row {
+  display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 2rem;
+}
+.giftbox-price {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+  color: var(--gold-lt); letter-spacing: -0.01em;
+}
+.giftbox-price-note {
+  font-family: var(--sans); font-size: 0.67rem; font-weight: 300;
+  color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* Giant story-section logo watermark */
+.story-bg-logo {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; max-width: 860px;
+  pointer-events: none; z-index: 0;
+}
+.story-bg-logo img {
+  width: 100%; display: block;
+  opacity: 0.055;
+  filter: brightness(10);
+  will-change: transform;
+}
+
+/* ── STORY SECTION ────────────────────────────────── */
+#story {
+  padding: 9rem 0;
+  background: transparent;
+  position: relative;
+  overflow: hidden; /* clips the photo bleed at viewport edge */
+}
+.story-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+  position: relative; z-index: 1;
+}
+
+/* Kampot photo — bleeds past the right edge of the container */
+.story-photo-wrap {
+  position: relative;
+  height: 560px;
+  /* Pull right edge past the container padding and add extra bleed */
+  margin-right: calc(-2.5rem - 5vw);
+  overflow: hidden;
+}
+.story-photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+.story-text .eyebrow { text-align: left; }
+.story-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem,3.5vw,3rem);
+  font-weight: 300; line-height: 1.12;
+  color: var(--text);
+}
+.story-title em { font-style: italic; }
+.story-rule {
+  width: 38px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 1.8rem 0;
+}
+.story-body {
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 300;
+  color: var(--dim); line-height: 1.95;
+}
+.story-body p + p { margin-top: 1.25rem; }
+.story-body strong { color: var(--gold-lt); font-weight: 400; }
+.story-quote {
+  margin: 2.2rem 0; padding-left: 1.6rem;
+  border-left: 2px solid var(--gold);
+  font-family: var(--serif); font-size: 1.3rem; font-style: italic;
+  color: rgba(255,255,255,0.75); line-height: 1.5; font-weight: 300;
+}
+
+/* ── ORDER SECTION ────────────────────────────────── */
+#order {
+  padding: 8rem 0;
+  background: transparent;
+  position: relative; overflow: hidden;
+}
+.order-watermark {
+  position: absolute; inset: 0; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.order-watermark img { width: 42%; opacity: 0.05; }
+
+.order-tabs {
+  display: flex; width: fit-content; margin: 0 auto 3.5rem;
+  border: 1px solid rgba(208,168,105,0.4);
+  position: relative; z-index: 1;
+}
+.tab-btn {
+  font-family: var(--sans); font-size: 0.67rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.8rem 2.2rem; cursor: pointer;
+  background: transparent; color: var(--dim); border: none;
+  transition: background 0.3s, color 0.3s;
+}
+.tab-btn.active { background: var(--gold); color: #fff; }
+.tab-btn:not(.active):hover { background: rgba(208,168,105,0.10); color: var(--text); }
+
+.tab-panel { display: none; position: relative; z-index: 1; }
+.tab-panel.active { display: block; }
+
+.order-form {
+  max-width: 700px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+.form-group.full { grid-column: 1/-1; }
+.form-group label {
+  font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: var(--sans); font-size: 0.875rem; font-weight: 300;
+  color: rgba(243,239,229,0.82); background: rgba(56,59,72,0.20);
+  border: 1px solid rgba(208,168,105,0.25); padding: 0.78rem 1rem;
+  outline: none; appearance: none; -webkit-appearance: none;
+  transition: border-color 0.3s, background 0.3s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(243,239,229,0.30); }
+.form-group select option { background: #090a0c; color: rgba(243,239,229,0.85); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(56,59,72,0.30);
+}
+.form-group textarea { resize: vertical; min-height: 96px; }
+
+.product-checkboxes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+.product-check-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: rgba(56,59,72,0.18); border: 1px solid rgba(208,168,105,0.22);
+  padding: 0.75rem 1rem; cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+.product-check-item:has(input:checked) {
+  border-color: var(--gold); background: rgba(208,168,105,0.10);
+}
+.product-check-item input[type="checkbox"] {
+  accent-color: var(--gold); width: 14px; height: 14px; flex-shrink: 0;
+  border: none; padding: 0;
+}
+.product-check-item span {
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 400; color: var(--text);
+}
+.form-submit {
+  grid-column: 1/-1;
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  background: var(--gold); color: #fff; border: none; cursor: pointer;
+  padding: 1.1rem 2rem; margin-top: 0.4rem; width: 100%;
+  transition: background 0.35s, letter-spacing 0.35s;
+}
+.form-submit:hover { background: #fff; color: var(--dark); letter-spacing: 0.32em; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer {
+  background: rgba(9,10,12,0.70);
+  padding: 4rem 2rem 2.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 2rem;
+  text-align: center;
+}
+.footer-seal { height: 64px; opacity: 0.4; filter: invert(1) brightness(0.6); }
+.footer-links { display: flex; gap: 2.5rem; list-style: none; flex-wrap: wrap; justify-content: center; }
+.footer-links a {
+  font-family: var(--sans); font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  color: var(--muted); transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-divider {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(208,168,105,0.4), transparent);
+}
+.footer-copy {
+  font-family: var(--sans); font-size: 0.62rem; font-weight: 300;
+  letter-spacing: 0.12em; color: rgba(243,239,229,0.22);
+}
+
+/* ── REVEAL ───────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+
+/* ── KEYFRAMES ────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceY {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-7px); }
+}
+
+/* Light ray sweeps across the logo (masked to logo shape) every 15s */
+@keyframes lightRay {
+  0%, 8%    { transform: translateX(-200%) skewX(-12deg); opacity: 0; }
+  10%       { opacity: 1; }
+  33%       { transform: translateX(480%) skewX(-12deg); opacity: 1; }
+  37%       { transform: translateX(510%) skewX(-12deg); opacity: 0; }
+  38%, 100% { transform: translateX(-200%) skewX(-12deg); opacity: 0; }
+}
+
+/* Gold specular shine on brand name (masked to text) every 7s */
+@keyframes goldShine {
+  0%, 9%    { transform: translateX(-180%) skewX(-22deg); opacity: 0; }
+  11%       { opacity: 1; }
+  37%       { transform: translateX(370%) skewX(-22deg); opacity: 1; }
+  42%       { transform: translateX(400%) skewX(-22deg); opacity: 0; }
+  43%, 100% { transform: translateX(-180%) skewX(-22deg); opacity: 0; }
+}
+
+/* Sparkle twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  40%, 60%  { opacity: 1; }
+}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 1100px) {
+  .product-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .story-photo-wrap { display: none; }
+  .giftbox-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .giftbox-photo-wrap { display: none; }
+  nav { padding: 1.1rem 1.5rem; }
+  nav.scrolled { padding: 0.8rem 1.5rem; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex !important; flex-direction: column;
+    position: fixed; inset: 0;
+    background: rgba(9,10,12,0.97);
+    align-items: center; justify-content: center;
+    gap: 3rem; z-index: 190;
+  }
+  .nav-links.open a { font-size: 1rem; letter-spacing: 0.25em; }
+  .order-form { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: auto; }
+  .product-checkboxes { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .order-tabs { flex-direction: column; width: 100%; max-width: 340px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══ FIXED PAGE BACKGROUND ════════════════════════ -->
+<div class="page-bg" aria-hidden="true">
+  <div class="bg-story">
+    <img src="Brand_assets/STORY.png" alt="" id="storyBgImg">
+  </div>
+  <div class="page-particles" id="pageParticles" aria-hidden="true"></div>
+</div>
+
+
+<!-- ══ SITE CONTENT ══════════════════════════════════ -->
+<div class="site-wrap">
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#collection" onclick="closeMenu()">Collection</a></li>
+    <li><a href="#story"      onclick="closeMenu()">Our Story</a></li>
+    <li><a href="#order"      onclick="closeMenu()">Wholesale</a></li>
+    <li><a href="#order"      onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <a href="#order" class="nav-cta">Contact Us</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+
+  <!-- Corner motifs — absolute within hero only -->
+  <div class="page-corner page-corner--tl" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_02.png" alt=""></div>
+  <div class="page-corner page-corner--br" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_02.png" alt=""></div>
+
+  <!-- Logo watermark — ray masked to logo pixels only -->
+  <div class="hero-watermark">
+    <div class="logo-wrap">
+      <img src="Brand_assets/LOGO_01.png" alt="">
+      <div class="logo-ray"></div>
+    </div>
+  </div>
+
+  <div class="hero-vignette"></div>
+  <div class="sparkle-layer" id="sparkleLayer"></div>
+
+  <div class="hero-content">
+    <!-- Brand name with masked shine + specular flares -->
+    <div class="hero-brand-area">
+      <div class="brand-wrap">
+        <img class="hero-brand" src="Brand_assets/BRAND_NAME.png" alt="GARUDA Kampot Fleur de Sel">
+        <div class="brand-ray"></div>
+      </div>
+    </div>
+    <div class="hero-rule"></div>
+    <p class="hero-tagline">Hand-harvested from the salt ponds of Kampot, Cambodia</p>
+    <p class="hero-sub">Ancestral Craftsmanship &nbsp;·&nbsp; Premium Fleur de Sel</p>
+    <a href="#collection" class="btn-hero">Discover the Collection</a>
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+
+</section>
+
+
+<!-- ── COLLECTION ────────────────────────────────────── -->
+<section id="collection">
+  <div class="collection-watermark">
+    <img src="Brand_assets/LOGO_02.png" alt="">
+  </div>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow reveal">The Collection</span>
+      <h2 class="section-title reveal delay-1">Four Expressions of<br><em>Kampot Terroir</em></h2>
+      <div class="section-rule reveal delay-2"></div>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card reveal delay-1">
+        <div class="card-image">
+          <img src="Brand_assets/BCS_GOLD_BLACK_01.jpg" alt="Gold Flakes">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">24-Carat Gold</span>
+          <h3 class="card-name">Gold<br><em>Flakes</em></h3>
+          <p class="card-desc">Finished with food-grade 24-carat gold leaf. A luminous gesture reserved for the moments that call for something truly remarkable.</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal delay-2">
+        <div class="card-image">
+          <img src="Brand_assets/BCS_SMOKED_BLACK_01.png" alt="Smoked Fleur de Sel">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Cold-Smoked</span>
+          <h3 class="card-name">Smoked<br><em>Fleur de Sel</em></h3>
+          <p class="card-desc">Delicately cold-smoked, revealing a rich mineral character and subtle woody notes that elevate meats, poultry and fish.</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal delay-3">
+        <div class="card-image">
+          <img src="Brand_assets/BCS_HERBES_BLACK_01.jpg" alt="Herbes de Provence">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Aromatic Blend</span>
+          <h3 class="card-name">Herbes de<br><em>Provence</em></h3>
+          <p class="card-desc">Blended with Label Rouge herbes de Provence from Aix-en-Provence — warm, fragrant, ideal for roasted vegetables and grilled meats.</p>
+        </div>
+      </div>
+
+      <div class="product-card reveal delay-4">
+        <div class="card-image">
+          <img src="Brand_assets/BCS_PREMIUM_BLACK_01.jpg" alt="Premium Fleur de Sel">
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Unblended</span>
+          <h3 class="card-name">Premium<br><em>Fleur de Sel</em></h3>
+          <p class="card-desc">Mineral-rich and unadorned. Delicate crystals dissolve slowly with a sweet oceanic finish — the purest expression of Kampot.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── GIFT BOX ───────────────────────────────────────── -->
+<section id="giftbox">
+  <div class="container">
+
+    <!-- Centred header -->
+    <div class="section-header reveal" style="margin-bottom:2.5rem;">
+      <span class="eyebrow">Gifting</span>
+      <h2 class="section-title">The Perfect<br><em>Gift.</em></h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <!-- Centred body copy -->
+    <div class="reveal delay-1" style="max-width:600px;margin:0 auto 3rem;text-align:center;">
+      <p class="giftbox-desc">Reward your people, or thank your clients, with something worth keeping. Garuda gift boxes carry their own ceremony.</p>
+      <p class="giftbox-desc" style="margin-top:1.2rem;font-style:italic;color:rgba(208,168,105,0.85);">— or give your shelf the distinction of a curated, single-origin name, embodying the pride of Cambodia.</p>
+      <a href="#order" class="btn-hero" style="font-size:0.68rem;padding:0.8rem 2.4rem;display:inline-block;margin-top:2rem;">Enquire About Gift Orders</a>
+    </div>
+
+  </div>
+
+  <!-- Full-width salt lake banner -->
+  <div class="reveal delay-2" style="width:100%;margin-top:2rem;line-height:0;">
+    <img src="Brand_assets/SALT_LAKE_BANNER_01.png" alt="Kampot salt pans" style="width:100%;display:block;">
+  </div>
+
+</section>
+
+
+<!-- ── STORY ──────────────────────────────────────────── -->
+<section id="story">
+  <div class="container">
+    <div class="story-grid">
+
+      <!-- Giant parallax logo watermark behind story content -->
+      <div class="story-bg-logo" id="storyBgLogo" aria-hidden="true">
+        <img src="Brand_assets/LOGO_01.png" alt="">
+      </div>
+
+      <!-- Text on the LEFT -->
+      <div class="story-text reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="story-title">Garuda<br><em>Fleur de Sel</em></h2>
+        <div class="story-rule"></div>
+        <div class="story-body">
+          <p>Garuda begins where two forces meet: coast and sky.</p>
+          <p>The coast is Kampot—where sun, wind, and sea draw delicate crystals from shallow salt pans. Harvested by hand at just the right moment, each fragile flake is the true flower of the salt—rare, mineral-rich, and fleeting.</p>
+          <p>The sky belongs to Garuda—the ancient bird of Khmer legend, symbol of strength, grace, and sovereignty. For centuries, it has carried Cambodia's finest expressions into the world.</p>
+          <p>We source from trusted coastal communities, where generations of craft endure. We do not make the salt—we honour it: selecting only the finest harvests, presenting them with care, and sharing their story beyond the shore.</p>
+          <p>Each tin holds more than salt. It holds a place, a tradition, and the quiet work of many unseen hands.</p>
+          <p><strong>That is Garuda.</strong></p>
+        </div>
+      </div>
+
+      <!-- Kampot photo on the RIGHT — bleeds past the frame -->
+      <div class="story-photo-wrap reveal delay-2">
+        <img src="Brand_assets/Kampot.jpg" alt="Kampot at sunset" class="story-photo">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CONTACT ──────────────────────────────────────────── -->
+<section id="order">
+  <div class="order-watermark">
+    <img src="Brand_assets/LOGO_02.png" alt="">
+  </div>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow reveal">Get in Touch</span>
+      <h2 class="section-title reveal delay-1">Contact &amp; <em>Enquiries</em></h2>
+      <div class="section-rule reveal delay-2"></div>
+      <p class="reveal delay-3" style="font-family:var(--sans);font-size:0.85rem;font-weight:300;color:var(--dim);line-height:1.85;max-width:520px;margin:1.8rem auto 0;">Whether you are interested in a single tin or sourcing for a restaurant, a hotel, or a gift programme — we would love to hear from you.</p>
+    </div>
+
+    <form class="order-form reveal delay-2" onsubmit="handleSubmit(event)" style="position:relative;z-index:1;">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select name="subject">
+          <option>Product Enquiry</option>
+          <option>Wholesale &amp; Distribution</option>
+          <option>Gift Orders</option>
+          <option>Press &amp; Media</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Country <span style="font-weight:300;opacity:0.55;font-size:0.85em;">(optional)</span></label>
+        <select name="country">
+          <option value="">Select country…</option>
+          <option>Cambodia</option>
+          <option disabled>──────────────</option>
+          <option>France</option><option>Belgium</option><option>Switzerland</option>
+          <option>Luxembourg</option><option>United Kingdom</option><option>Germany</option>
+          <option>Netherlands</option><option>United States</option><option>Canada</option>
+          <option>Australia</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Message</label>
+        <textarea name="message" placeholder="Tell us what you are looking for…" style="min-height:130px;" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message →</button>
+    </form>
+
+  </div>
+</section>
+
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <img class="footer-seal" src="Brand_assets/LOGO_02.png" alt="Garuda">
+  <ul class="footer-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#order">Wholesale</a></li>
+    <li><a href="#order">Contact</a></li>
+    <li><a href="mailto:kampotseasalt@gmail.com">Email Us</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 GARUDA — Kampot Fleur de Sel. All rights reserved.</p>
+</footer>
+
+</div><!-- /.site-wrap -->
+
+
+<!-- ══ SCRIPTS ══════════════════════════════════════ -->
+<script>
+// Navbar
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 70);
+}, { passive: true });
+
+// STORY.png parallax — slides upward gently as you scroll
+const storyBgImg = document.getElementById('storyBgImg');
+if (storyBgImg) {
+  window.addEventListener('scroll', () => {
+    storyBgImg.style.transform = `translateY(${-window.scrollY * 0.22}px)`;
+  }, { passive: true });
+}
+
+// Story section giant logo parallax
+const storyBgLogo = document.getElementById('storyBgLogo');
+const storySection = document.getElementById('story');
+if (storyBgLogo && storySection) {
+  window.addEventListener('scroll', () => {
+    const rect = storySection.getBoundingClientRect();
+    const mid  = rect.top + rect.height / 2;
+    const pct  = (window.innerHeight / 2 - mid) / window.innerHeight;
+    storyBgLogo.querySelector('img').style.transform = `translateY(${pct * 60}px)`;
+  }, { passive: true });
+}
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Form submit → mailto
+function handleSubmit(e) {
+  e.preventDefault();
+  const f = e.target, d = new FormData(f);
+  const subject = `GARUDA — ${d.get('subject') || 'Enquiry'}`;
+  const body = [
+    `Name: ${d.get('name')}`,
+    `Email: ${d.get('email')}`,
+    `Country: ${d.get('country') || '—'}`,
+    `Subject: ${d.get('subject')}`,
+    `Message: ${d.get('message') || '—'}`
+  ].join('\n');
+  window.location.href = `mailto:kampotseasalt@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+// Mobile nav
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('navLinks').classList.remove('open'); }
+
+// ── Gold corner brackets on product cards ──
+document.querySelectorAll('.product-card').forEach(card => {
+  ['tl','tr','bl','br'].forEach(pos => {
+    const c = document.createElement('span');
+    c.className = `card-corner card-corner-${pos}`;
+    card.appendChild(c);
+  });
+});
+
+// ── Full-page floating depth particles ──
+(function() {
+  const layer = document.getElementById('pageParticles');
+  if (!layer) return;
+  const pts = [];
+  for (let i = 0; i < 130; i++) {
+    const el = document.createElement('div');
+    const d  = Math.random();
+    const sz = d < 0.5 ? 1 : d < 0.8 ? 2 : (2 + Math.random()).toFixed(1);
+    const bl = (0.6 + d * 4).toFixed(1);
+    const useGold = Math.random() < 0.45;
+    const r = useGold ? 208 : 243, g = useGold ? 168 : 239, b = useGold ? 105 : 229;
+    el.style.cssText = `position:absolute;left:${(Math.random()*100).toFixed(1)}%;top:${(Math.random()*100).toFixed(1)}%;width:${sz}px;height:${sz}px;background:rgba(${r},${g},${b},1);border-radius:50%;filter:blur(${bl}px);will-change:transform,opacity;`;
+    layer.appendChild(el);
+    pts.push({
+      el,
+      baseOp:   0.1 + d * 0.5,
+      floatX:   (Math.random() - 0.5) * (d < 0.3 ? 10 : d < 0.7 ? 22 : 38),
+      floatY:   -(Math.random() * (d < 0.3 ? 12 : d < 0.7 ? 24 : 42)),
+      opSpd:    0.0015 + Math.random() * 0.003,
+      opPh:     Math.random() * Math.PI * 2,
+      posSpd:   0.00048 + d * 0.0015,
+      posPh:    Math.random() * Math.PI * 2,
+    });
+  }
+  function tick(t) {
+    pts.forEach(p => {
+      const s = Math.sin(t * p.posSpd + p.posPh);
+      const c = Math.cos(t * p.posSpd * 0.65 + p.posPh);
+      const o = p.baseOp * (0.4 + 0.6 * Math.abs(Math.sin(t * p.opSpd + p.opPh)));
+      p.el.style.opacity   = o.toFixed(3);
+      p.el.style.transform = `translate(${(p.floatX*s).toFixed(1)}px,${(p.floatY*c).toFixed(1)}px)`;
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// ── Sparkles: 1px white dots only, blur variation for depth ──
+(function() {
+  const layer = document.getElementById('sparkleLayer');
+  if (!layer) return;
+  for (let i = 0; i < 110; i++) {
+    const el = document.createElement('div');
+    const blur = (0.8 + Math.random() * 2.8).toFixed(2);
+    const dur  = (0.3 + Math.random() * 1.0).toFixed(2);
+    const del  = -(Math.random() * parseFloat(dur)).toFixed(2);
+    el.style.cssText = `
+      position:absolute;
+      left:${(Math.random()*100).toFixed(2)}%;
+      top:${(Math.random()*100).toFixed(2)}%;
+      width:1px; height:1px;
+      background:#f3efe5;
+      filter:blur(${blur}px);
+      animation:twinkle ${dur}s ${del}s ease-in-out infinite;
+    `;
+    layer.appendChild(el);
+  }
+})();
+</script>
+
+</body>
+</html>
