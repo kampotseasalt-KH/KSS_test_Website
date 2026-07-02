@@ -1154,9 +1154,18 @@ function handleSubmit(e) {
     `Email: ${d.get('email')}`,
     `Country: ${d.get('country') || '—'}`,
     `Subject: ${d.get('subject')}`,
-    `Message: ${d.get('message') || '—'}`
+    `Message:\n${d.get('message') || '—'}`
   ].join('\n');
-  window.location.href = `mailto:kampotseasalt@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const a = document.createElement('a');
+  a.href = `mailto:kampotseasalt@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  const btn = f.querySelector('.form-submit');
+  const orig = btn.textContent;
+  btn.textContent = 'Opening email client…';
+  btn.disabled = true;
+  setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 4000);
 }
 
 // Mobile nav
