@@ -191,11 +191,11 @@ nav.scrolled {
 /* Brand name — shine masked to text alpha only */
 .brand-wrap {
   position: relative; display: inline-block;
-  -webkit-mask-image: url('Brand_assets/BRAND_NAME.png');
+  -webkit-mask-image: url('Brand_assets/WEB_HERO_LOGO_GOLD.png');
   -webkit-mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-  mask-image: url('Brand_assets/BRAND_NAME.png');
+  mask-image: url('Brand_assets/WEB_HERO_LOGO_GOLD.png');
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -719,14 +719,35 @@ footer {
   40%, 60%  { opacity: 1; }
 }
 
+/* ── CONTACT INFO BLOCK ───────────────────────────── */
+.contact-details {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2rem 3.5rem;
+  max-width: 720px; margin: 0 auto 3.5rem;
+  position: relative; z-index: 1;
+}
+.contact-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+  text-decoration: none;
+}
+.contact-item-label {
+  font-family: var(--sans); font-size: 0.55rem; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+}
+.contact-item-value {
+  font-family: var(--serif); font-size: 1rem; font-style: italic;
+  color: var(--dim); transition: color 0.3s;
+}
+.contact-item:hover .contact-item-value { color: var(--gold-lt); }
+
 /* ── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 1100px) {
   .product-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 900px) {
-  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .story-grid { grid-template-columns: 1fr; gap: 2rem; }
   .story-photo-wrap { display: none; }
-  .giftbox-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .giftbox-grid { grid-template-columns: 1fr; gap: 2rem; }
   .giftbox-photo-wrap { display: none; }
   nav { padding: 1.1rem 1.5rem; }
   nav.scrolled { padding: 0.8rem 1.5rem; }
@@ -745,10 +766,22 @@ footer {
   .order-form { grid-template-columns: 1fr; }
   .form-group.full { grid-column: auto; }
   .product-checkboxes { grid-template-columns: 1fr; }
+  /* Tighten section spacing on mobile */
+  #collection, #giftbox, #order { padding: 4rem 0; }
+  #story { padding: 4rem 0; }
+  .container { padding: 0 1.2rem; }
+  .section-header { margin-bottom: 2.5rem; }
+  .product-grid { gap: 1.2rem; }
+  .hero-brand { width: min(320px, 88vw) !important; }
+  .hero-content { gap: 0.9rem; padding: 0 1.2rem; }
+  .story-body { font-size: 0.82rem; }
+  .giftbox-desc { font-size: 0.82rem; }
+  .contact-details { gap: 1.5rem 2rem; }
+  footer { padding: 3rem 1.2rem 2rem; }
 }
 @media (max-width: 600px) {
   .product-grid { grid-template-columns: 1fr; }
-  .order-tabs { flex-direction: column; width: 100%; max-width: 340px; }
+  .hero-brand { width: min(290px, 92vw) !important; }
 }
 </style>
 </head>
@@ -787,8 +820,8 @@ footer {
 <section id="hero">
 
   <!-- Corner motifs — absolute within hero only -->
-  <div class="page-corner page-corner--tl" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_02.png" alt=""></div>
-  <div class="page-corner page-corner--br" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_02.png" alt=""></div>
+  <div class="page-corner page-corner--tl" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_03.png" alt=""></div>
+  <div class="page-corner page-corner--br" aria-hidden="true"><img src="Brand_assets/MOTIFS_CORNERS_03.png" alt=""></div>
 
   <!-- Logo watermark — ray masked to logo pixels only -->
   <div class="hero-watermark">
@@ -805,7 +838,7 @@ footer {
     <!-- Brand name with masked shine + specular flares -->
     <div class="hero-brand-area">
       <div class="brand-wrap">
-        <img class="hero-brand" src="Brand_assets/BRAND_NAME.png" alt="GARUDA Kampot Fleur de Sel">
+        <img class="hero-brand" src="Brand_assets/WEB_HERO_LOGO_GOLD.png" alt="GARUDA Kampot Fleur de Sel">
         <div class="brand-ray"></div>
       </div>
     </div>
@@ -958,6 +991,26 @@ footer {
       <p class="reveal delay-3" style="font-family:var(--sans);font-size:0.85rem;font-weight:300;color:var(--dim);line-height:1.85;max-width:520px;margin:1.8rem auto 0;">Whether you are interested in a single tin or sourcing for a restaurant, a hotel, or a gift programme — we would love to hear from you.</p>
     </div>
 
+    <!-- Contact details -->
+    <div class="contact-details reveal delay-2">
+      <a href="tel:+85592555121" class="contact-item">
+        <span class="contact-item-label">Phone</span>
+        <span class="contact-item-value">+855 92 555 121</span>
+      </a>
+      <a href="mailto:info@kampotseasalt.com" class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <span class="contact-item-value">info@kampotseasalt.com</span>
+      </a>
+      <a href="https://www.facebook.com/GarudaPremiumSeaSalt" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-item-label">Facebook</span>
+        <span class="contact-item-value">GarudaPremiumSeaSalt</span>
+      </a>
+      <a href="https://www.instagram.com/garuda_premium_seasalt/" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-item-label">Instagram</span>
+        <span class="contact-item-value">@garuda_premium_seasalt</span>
+      </a>
+    </div>
+
     <form class="order-form reveal delay-2" onsubmit="handleSubmit(event)" style="position:relative;z-index:1;">
       <div class="form-group">
         <label>Name</label>
@@ -1008,7 +1061,13 @@ footer {
     <li><a href="#story">Our Story</a></li>
     <li><a href="#order">Wholesale</a></li>
     <li><a href="#order">Contact</a></li>
-    <li><a href="mailto:kampotseasalt@gmail.com">Email Us</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <ul class="footer-links">
+    <li><a href="tel:+85592555121">+855 92 555 121</a></li>
+    <li><a href="mailto:info@kampotseasalt.com">info@kampotseasalt.com</a></li>
+    <li><a href="https://www.facebook.com/GarudaPremiumSeaSalt" target="_blank" rel="noopener">Facebook</a></li>
+    <li><a href="https://www.instagram.com/garuda_premium_seasalt/" target="_blank" rel="noopener">Instagram</a></li>
   </ul>
   <div class="footer-divider"></div>
   <p class="footer-copy">© 2026 GARUDA — Kampot Fleur de Sel. All rights reserved.</p>
