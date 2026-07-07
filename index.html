@@ -704,6 +704,79 @@ nav.scrolled {
 }
 .form-submit:hover { background: #fff; color: var(--dark); letter-spacing: 0.32em; }
 
+/* ── REVIEWS ─────────────────────────────────────── */
+#reviews {
+  padding: 7rem 0 6rem;
+  position: relative; z-index: 1;
+}
+#reviews .section-sub {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 300;
+  color: var(--muted); letter-spacing: 0.06em; line-height: 1.7;
+  max-width: 480px; margin: 0.8rem auto 0;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  margin-top: 3.5rem;
+}
+.review-card {
+  position: relative;
+  background: rgba(30,32,42,0.55);
+  border: 1px solid rgba(208,168,105,0.22);
+  border-bottom: 2px solid rgba(208,168,105,0.40);
+  padding: 2rem 1.8rem 1.8rem;
+  display: flex; flex-direction: column; gap: 1.2rem;
+  box-shadow: 0 12px 40px rgba(9,10,12,0.50), 0 0 20px rgba(208,168,105,0.05);
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.review-card::before {
+  content: '';
+  position: absolute; inset: 5px; pointer-events: none;
+  border: 1px solid rgba(208,168,105,0.12);
+}
+.review-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(208,168,105,0.55) 50%, transparent);
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(208,168,105,0.45);
+  box-shadow: 0 20px 60px rgba(9,10,12,0.65), 0 0 30px rgba(208,168,105,0.10);
+}
+.review-stars {
+  font-size: 0.95rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.review-text {
+  font-family: var(--serif); font-size: 1rem; font-style: italic;
+  font-weight: 300; line-height: 1.75;
+  color: var(--text);
+  flex: 1;
+}
+.review-author {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(208,168,105,0.15);
+}
+.review-name {
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+}
+.review-role {
+  font-family: var(--sans); font-size: 0.65rem; font-weight: 300;
+  letter-spacing: 0.08em; color: var(--muted);
+}
+@media (max-width: 900px) {
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+  #reviews { padding: 4rem 0 3rem; }
+}
+
 /* ── FOOTER ───────────────────────────────────────── */
 footer {
   background: rgba(9,10,12,0.70);
@@ -1057,6 +1130,128 @@ footer {
   </div>
 </section>
 
+
+<!-- ── REVIEWS ─────────────────────────────────────────── -->
+<section id="reviews">
+  <div class="section-inner" style="max-width:1160px;">
+    <div class="section-header reveal">
+      <span class="eyebrow">What People Say</span>
+      <h2 class="section-title">Voices from the Table</h2>
+      <p class="section-sub">From home kitchens to Michelin-starred restaurants — a salt worth talking about.</p>
+    </div>
+
+    <div class="reviews-grid">
+
+      <article class="review-card reveal delay-1" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "I've worked with fleur de sel from Guérande for twenty years. Garuda is something different entirely — lighter, more delicate, with a mineral clarity that lets the ingredient speak. We now finish every dish at the table with it."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Étienne Marchand</span></span>
+          <span class="review-role">Executive Chef · Lyon, France</span>
+        </div>
+      </article>
+
+      <article class="review-card reveal delay-2" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "Received this as a gift and immediately ordered three more tins to give away myself. The Gold Flakes variety is extraordinary — it dissolves on the tongue before you notice it. Nothing like supermarket salt."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sophie Leclercq</span></span>
+          <span class="review-role">Brussels, Belgium</span>
+        </div>
+      </article>
+
+      <article class="review-card reveal delay-3" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "We ordered the gift collection for our top clients last Christmas. The presentation is impeccable — the kind of thing people keep on display rather than use up. Several clients have since asked where to buy more."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">James Worthington</span></span>
+          <span class="review-role">London, United Kingdom</span>
+        </div>
+      </article>
+
+      <article class="review-card reveal delay-1" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "The Cold Smoked variety stopped me mid-bite. A whisper of smoke over clean sea salt — it transforms a simple piece of butter and bread into something memorable. Already on my second tin."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Mei Lin Tan</span></span>
+          <span class="review-role">Singapore</span>
+        </div>
+      </article>
+
+      <article class="review-card reveal delay-2" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "We stock Garuda in our fine foods boutique and it sells itself. Customers pick it up for the packaging, return for the quality. The Cambodian origin story is exactly what our clientele values."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Thomas De Smet</span></span>
+          <span class="review-role">Fine Foods Boutique · Antwerp, Belgium</span>
+        </div>
+      </article>
+
+      <article class="review-card reveal delay-3" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
+        <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          ★★★★★
+        </div>
+        <blockquote class="review-text" itemprop="reviewBody">
+          "The Herbes de Provence blend is genuinely special. The herbs don't overpower — they lift. It's become my go-to finishing salt for roasted vegetables and grilled fish. Beautifully balanced."
+        </blockquote>
+        <div class="review-author">
+          <span class="review-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Isabelle Fontaine</span></span>
+          <span class="review-role">Paris, France</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Aggregate rating shown to Google -->
+    <div itemscope itemtype="https://schema.org/Product" style="display:none;">
+      <span itemprop="name">GARUDA Kampot Fleur de Sel</span>
+      <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+        <span itemprop="ratingValue">5</span>
+        <span itemprop="reviewCount">6</span>
+        <span itemprop="bestRating">5</span>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ── CONTACT ──────────────────────────────────────────── -->
 <section id="order">
