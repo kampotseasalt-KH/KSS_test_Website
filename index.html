@@ -777,6 +777,69 @@ nav.scrolled {
   #reviews { padding: 4rem 0 3rem; }
 }
 
+/* ── AWARDS ──────────────────────────────────────── */
+#awards { padding: 7rem 0 5rem; position: relative; z-index: 1; }
+.awards-inner {
+  max-width: 1160px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.awards-desc {
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 300;
+  color: var(--dim); line-height: 1.8;
+}
+.awards-desc strong { color: var(--gold-lt); font-weight: 500; }
+.awards-badge {
+  margin-top: 2rem;
+  display: inline-flex;
+}
+.awards-badge-inner {
+  border: 1px solid rgba(208,168,105,0.45);
+  border-bottom: 2px solid rgba(208,168,105,0.65);
+  padding: 1.4rem 2rem; display: flex; flex-direction: column; gap: 0.3rem;
+  background: rgba(208,168,105,0.05);
+  position: relative;
+}
+.awards-badge-inner::before {
+  content: ''; position: absolute; inset: 5px; pointer-events: none;
+  border: 1px solid rgba(208,168,105,0.18);
+}
+.awards-badge-inner::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(208,168,105,0.8) 50%, transparent);
+}
+.awards-badge-year {
+  font-family: var(--serif); font-size: 0.75rem; font-weight: 300;
+  letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+}
+.awards-badge-label {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+  font-style: italic; line-height: 1.2; color: var(--text);
+}
+.awards-badge-event {
+  font-family: var(--sans); font-size: 0.62rem; font-weight: 300;
+  letter-spacing: 0.1em; color: var(--muted); margin-top: 0.2rem; line-height: 1.5;
+}
+.awards-img-wrap {
+  position: relative; overflow: hidden; line-height: 0;
+  border: 1px solid rgba(208,168,105,0.30);
+  border-bottom: 2px solid rgba(208,168,105,0.55);
+  box-shadow: 0 0 0 1px rgba(208,168,105,0.06), 0 24px 60px rgba(9,10,12,0.65), 0 0 30px rgba(208,168,105,0.08);
+}
+.awards-img-wrap::before {
+  content: ''; position: absolute; inset: 6px; z-index: 2; pointer-events: none;
+  border: 1px solid rgba(208,168,105,0.35);
+}
+.awards-img-wrap::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(208,168,105,0.8) 50%, transparent);
+  animation: cardTopShimmer 5s ease-in-out infinite;
+}
+.awards-img-wrap img { width: 100%; display: block; }
+@media (max-width: 900px) {
+  .awards-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  #awards { padding: 4rem 0 3rem; }
+}
+
 /* ── FOOTER ───────────────────────────────────────── */
 footer {
   background: rgba(9,10,12,0.70);
@@ -1220,6 +1283,32 @@ footer {
         <span itemprop="reviewCount">4</span>
         <span itemprop="bestRating">5</span>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── AWARDS ──────────────────────────────────────────── -->
+<section id="awards">
+  <div class="awards-inner">
+
+    <div class="awards-text reveal">
+      <span class="eyebrow">Recognition</span>
+      <h2 class="section-title" style="text-align:left;">Award-Winning<br><em>Branding &amp; Packaging</em></h2>
+      <div class="section-rule" style="margin:1.4rem 0;"></div>
+      <p class="awards-desc">GARUDA was recognised with the <strong>Best Design &amp; Packaging Award</strong> at the <strong>Phnom Penh Khmer Food Exhibition 2026</strong> — Cambodia's foremost showcase of local food excellence and artisan craft.</p>
+      <p class="awards-desc" style="margin-top:1rem;">A tribute to the vision behind each tin: that premium Cambodian produce deserves presentation worthy of the world's finest tables.</p>
+      <div class="awards-badge reveal delay-2">
+        <div class="awards-badge-inner">
+          <span class="awards-badge-year">2026</span>
+          <span class="awards-badge-label">Best Design<br>&amp; Packaging</span>
+          <span class="awards-badge-event">Phnom Penh Khmer<br>Food Exhibition</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="awards-img-wrap reveal delay-1">
+      <img src="Brand_assets/Award_ALL.png" alt="GARUDA — Best Design and Packaging Award, Phnom Penh Khmer Food Exhibition 2026">
     </div>
 
   </div>
