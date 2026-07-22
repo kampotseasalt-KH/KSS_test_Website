@@ -815,17 +815,19 @@ nav.scrolled {
   font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
   font-style: italic; line-height: 1.2; color: var(--text);
 }
-.awards-badge-event-row {
-  display: flex; align-items: center; gap: 0.7rem; margin-top: 0.4rem;
+.awards-badge-inner {
+  display: flex; align-items: center; gap: 1.4rem;
+}
+.awards-badge-text {
+  display: flex; flex-direction: column; gap: 0.3rem;
 }
 .awards-event-logo {
-  width: 44px; height: 44px; object-fit: contain; flex-shrink: 0;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 4px rgba(208,168,105,0.25));
+  width: 132px; height: 132px; object-fit: contain; flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(208,168,105,0.20));
 }
 .awards-badge-event {
   font-family: var(--sans); font-size: 0.62rem; font-weight: 300;
-  letter-spacing: 0.1em; color: var(--muted); line-height: 1.5;
+  letter-spacing: 0.1em; color: var(--muted); line-height: 1.5; margin-top: 0.2rem;
 }
 .awards-img-wrap {
   position: relative; overflow: hidden; line-height: 0;
@@ -1218,12 +1220,12 @@ footer {
       <p class="awards-desc" style="margin-top:1rem;">A tribute to the vision behind each tin: that premium Cambodian produce deserves presentation worthy of the world's finest tables.</p>
       <div class="awards-badge reveal delay-2">
         <div class="awards-badge-inner">
-          <span class="awards-badge-year">2026</span>
-          <span class="awards-badge-label">Best Design<br>&amp; Packaging</span>
-          <div class="awards-badge-event-row">
-            <img src="Brand_assets/Aha_Khmer.png" alt="Phnom Penh Khmer Food Exhibition" class="awards-event-logo">
+          <div class="awards-badge-text">
+            <span class="awards-badge-year">2026</span>
+            <span class="awards-badge-label">Best Design<br>&amp; Packaging</span>
             <span class="awards-badge-event">Phnom Penh Khmer<br>Food Exhibition</span>
           </div>
+          <img src="Brand_assets/Aha_Khmer.png" alt="Phnom Penh Khmer Food Exhibition" class="awards-event-logo">
         </div>
       </div>
     </div>
