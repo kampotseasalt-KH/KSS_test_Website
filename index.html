@@ -815,9 +815,17 @@ nav.scrolled {
   font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
   font-style: italic; line-height: 1.2; color: var(--text);
 }
+.awards-badge-event-row {
+  display: flex; align-items: center; gap: 0.7rem; margin-top: 0.4rem;
+}
+.awards-event-logo {
+  width: 44px; height: 44px; object-fit: contain; flex-shrink: 0;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 4px rgba(208,168,105,0.25));
+}
 .awards-badge-event {
   font-family: var(--sans); font-size: 0.62rem; font-weight: 300;
-  letter-spacing: 0.1em; color: var(--muted); margin-top: 0.2rem; line-height: 1.5;
+  letter-spacing: 0.1em; color: var(--muted); line-height: 1.5;
 }
 .awards-img-wrap {
   position: relative; overflow: hidden; line-height: 0;
@@ -1198,6 +1206,35 @@ footer {
 </section>
 
 
+<!-- ── AWARDS ──────────────────────────────────────────── -->
+<section id="awards">
+  <div class="awards-inner">
+
+    <div class="awards-text reveal">
+      <span class="eyebrow">Recognition</span>
+      <h2 class="section-title" style="text-align:left;">Award-Winning<br><em>Branding &amp; Packaging</em></h2>
+      <div class="section-rule" style="margin:1.4rem 0;"></div>
+      <p class="awards-desc">GARUDA was recognised with the <strong>Best Design &amp; Packaging Award</strong> at the <strong>Phnom Penh Khmer Food Exhibition 2026</strong> — Cambodia's foremost showcase of local food excellence and artisan craft.</p>
+      <p class="awards-desc" style="margin-top:1rem;">A tribute to the vision behind each tin: that premium Cambodian produce deserves presentation worthy of the world's finest tables.</p>
+      <div class="awards-badge reveal delay-2">
+        <div class="awards-badge-inner">
+          <span class="awards-badge-year">2026</span>
+          <span class="awards-badge-label">Best Design<br>&amp; Packaging</span>
+          <div class="awards-badge-event-row">
+            <img src="Brand_assets/Aha_Khmer.png" alt="Phnom Penh Khmer Food Exhibition" class="awards-event-logo">
+            <span class="awards-badge-event">Phnom Penh Khmer<br>Food Exhibition</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="awards-img-wrap reveal delay-1">
+      <img src="Brand_assets/Award_ALL.png" alt="GARUDA — Best Design and Packaging Award, Phnom Penh Khmer Food Exhibition 2026">
+    </div>
+
+  </div>
+</section>
+
 <!-- ── REVIEWS ─────────────────────────────────────────── -->
 <section id="reviews">
   <div class="section-inner" style="max-width:1160px;">
@@ -1257,7 +1294,7 @@ footer {
         </div>
       </article>
 
-<article class="review-card reveal delay-3" itemscope itemtype="https://schema.org/Review">
+      <article class="review-card reveal delay-3" itemscope itemtype="https://schema.org/Review">
         <meta itemprop="itemReviewed" content="GARUDA Kampot Fleur de Sel">
         <div class="review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
           <meta itemprop="ratingValue" content="5">
@@ -1283,32 +1320,6 @@ footer {
         <span itemprop="reviewCount">4</span>
         <span itemprop="bestRating">5</span>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── AWARDS ──────────────────────────────────────────── -->
-<section id="awards">
-  <div class="awards-inner">
-
-    <div class="awards-text reveal">
-      <span class="eyebrow">Recognition</span>
-      <h2 class="section-title" style="text-align:left;">Award-Winning<br><em>Branding &amp; Packaging</em></h2>
-      <div class="section-rule" style="margin:1.4rem 0;"></div>
-      <p class="awards-desc">GARUDA was recognised with the <strong>Best Design &amp; Packaging Award</strong> at the <strong>Phnom Penh Khmer Food Exhibition 2026</strong> — Cambodia's foremost showcase of local food excellence and artisan craft.</p>
-      <p class="awards-desc" style="margin-top:1rem;">A tribute to the vision behind each tin: that premium Cambodian produce deserves presentation worthy of the world's finest tables.</p>
-      <div class="awards-badge reveal delay-2">
-        <div class="awards-badge-inner">
-          <span class="awards-badge-year">2026</span>
-          <span class="awards-badge-label">Best Design<br>&amp; Packaging</span>
-          <span class="awards-badge-event">Phnom Penh Khmer<br>Food Exhibition</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="awards-img-wrap reveal delay-1">
-      <img src="Brand_assets/Award_ALL.png" alt="GARUDA — Best Design and Packaging Award, Phnom Penh Khmer Food Exhibition 2026">
     </div>
 
   </div>
