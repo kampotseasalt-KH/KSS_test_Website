@@ -479,6 +479,73 @@ nav.scrolled {
 }
 .btn-order:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
 
+/* ── GIFT DIAPORAMA ──────────────────────────────── */
+#gift-diaporama {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: var(--dark);
+  line-height: 0;
+}
+.gift-diaporama-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+.gift-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.gift-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gift-diaporama-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9,10,12,0.18) 0%,
+    rgba(9,10,12,0.02) 40%,
+    rgba(9,10,12,0.02) 60%,
+    rgba(9,10,12,0.35) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+.gift-diaporama-dots {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+}
+.gift-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.gift-dot.active {
+  background: var(--gold);
+  transform: scale(1.4);
+}
+@media (max-width: 600px) {
+  .gift-diaporama-track { aspect-ratio: 4 / 3; }
+}
+
 /* ── GIFT BOX SECTION ─────────────────────────────── */
 #giftbox {
   padding: 8rem 0;
@@ -1140,6 +1207,21 @@ footer {
 </section>
 
 
+<!-- ── GIFT DIAPORAMA ───────────────────────────────────── -->
+<div id="gift-diaporama" aria-hidden="true">
+  <div class="gift-diaporama-track" id="giftDiaporama">
+    <img src="Brand_assets/Gift_01.png"             alt="" class="gift-slide active">
+    <img src="Brand_assets/Gift_Corpo2.png"         alt="" class="gift-slide">
+    <img src="Brand_assets/Gift_Corporation.png"    alt="" class="gift-slide">
+    <img src="Brand_assets/Gift_Hotel.png"          alt="" class="gift-slide">
+    <img src="Brand_assets/Gift_Shop.png"           alt="" class="gift-slide">
+    <img src="Brand_assets/giftWedding.png"         alt="" class="gift-slide">
+    <img src="Brand_assets/GiftWedding2.png"        alt="" class="gift-slide">
+    <div class="gift-diaporama-overlay"></div>
+    <div class="gift-diaporama-dots" id="giftDots"></div>
+  </div>
+</div>
+
 <!-- ── GIFT BOX ───────────────────────────────────────── -->
 <section id="giftbox">
   <div class="container">
@@ -1490,6 +1572,59 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap')
     el.appendChild(c);
   });
 });
+
+// ── Gift diaporama ──
+(function() {
+  const track = document.getElementById('giftDiaporama');
+  if (!track) return;
+  const slides = Array.from(track.querySelectorAll('.gift-slide'));
+  const dotsEl = document.getElementById('giftDots');
+  let current = 0;
+  let timer = null;
+  let startX = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'gift-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  const dots = Array.from(dotsEl.querySelectorAll('.gift-dot'));
+
+  // Preload
+  slides.slice(1).forEach(img => { const p = new Image(); p.src = img.src; });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startAuto() {
+    if (timer) return;
+    timer = setInterval(next, 2500);
+  }
+  function stopAuto() { clearInterval(timer); timer = null; }
+
+  startAuto();
+
+  // Pause on hover
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+
+  // Touch swipe
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 30) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+})();
 
 // ── Product image slideshow on hover / tap ──
 (function() {
