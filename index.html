@@ -487,18 +487,19 @@ nav.scrolled {
 }
 .gift-dia-wrap {
   width: min(860px, 90%);
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 4px;
   position: relative;
   background: #0d0e10;
-  line-height: 0;
 }
 .gift-dia-wrap img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.25s ease;
 }
 
 /* ── GIFT BOX SECTION ─────────────────────────────── */
@@ -1522,9 +1523,9 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap')
 
 // ── Gift diaporama ──
 (function() {
-  const img = document.getElementById('giftDiaImg');
-  if (!img) return;
-  const slides = [
+  const wrap = document.querySelector('.gift-dia-wrap');
+  if (!wrap) return;
+  const srcs = [
     'Brand_assets/Gift_01.png',
     'Brand_assets/Gift_Corpo2.png',
     'Brand_assets/Gift_Corporation.png',
@@ -1533,21 +1534,35 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap')
     'Brand_assets/giftWedding.png',
     'Brand_assets/GiftWedding2.png',
   ];
-  let idx = 0;
+  let idx = 0, busy = false;
 
-  // Preload
-  slides.slice(1).forEach(src => { const p = new Image(); p.src = src; });
+  srcs.slice(1).forEach(src => { const p = new Image(); p.src = src; });
+
+  let cur = wrap.querySelector('img');
 
   function advance() {
-    idx = (idx + 1) % slides.length;
-    img.style.opacity = '0';
+    if (busy) return;
+    busy = true;
+    idx = (idx + 1) % srcs.length;
+
+    const next = document.createElement('img');
+    next.src = srcs[idx];
+    next.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateX(100%);transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);';
+    wrap.appendChild(next);
+
+    next.getBoundingClientRect(); // force reflow
+    cur.style.cssText += 'transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);transform:translateX(-100%);';
+    next.style.transform = 'translateX(0)';
+
     setTimeout(() => {
-      img.src = slides[idx];
-      img.style.opacity = '1';
-    }, 250);
+      cur.remove();
+      cur = next;
+      cur.style.transition = '';
+      busy = false;
+    }, 700);
   }
 
-  setInterval(advance, 1500);
+  setInterval(advance, 3500);
 })();
 
 // ── Product image slideshow on hover / tap ──
