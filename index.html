@@ -1358,31 +1358,27 @@ footer {
               <span class="stockist-num">1</span>
               <span class="store-name">Kabas Concept Store</span>
               <span class="store-addr">#65 Street 178</span>
-              <span class="store-dir">↗ Maps</span>
             </a>
           </li>
           <li>
-            <a href="https://share.google/5O7cMCBVK0sDSxQhO" target="_blank" rel="noopener">
+            <a href="https://maps.app.goo.gl/smGyQ5rCz9xRqnsFA" target="_blank" rel="noopener">
               <span class="stockist-num">2</span>
               <span class="store-name">L'Épicerie Gourmet Food</span>
-              <span class="store-addr">Phnom Penh</span>
-              <span class="store-dir">↗ Maps</span>
+              <span class="store-addr">101 EO Preah Sisowath Quay</span>
             </a>
           </li>
           <li>
-            <a href="https://share.google/2pY6JKsKBSuu52JT5" target="_blank" rel="noopener">
+            <a href="https://maps.app.goo.gl/veSB7Wcgbv23y1Lu8" target="_blank" rel="noopener">
               <span class="stockist-num">3</span>
               <span class="store-name">NyoNyum Shop</span>
               <span class="store-addr">AEON Mall 1</span>
-              <span class="store-dir">↗ Maps</span>
             </a>
           </li>
           <li>
-            <a href="https://maps.google.com/?q=Souvenir+Station+Phnom+Penh+Street+178" target="_blank" rel="noopener">
+            <a href="https://maps.app.goo.gl/1iuzexKsp9oRnmyx5" target="_blank" rel="noopener">
               <span class="stockist-num">4</span>
               <span class="store-name">Souvenir Station</span>
-              <span class="store-addr">Street 178</span>
-              <span class="store-dir">↗ Maps</span>
+              <span class="store-addr">178 Samdach Sothearos Blvd (3)</span>
             </a>
           </li>
         </ul>
@@ -1394,19 +1390,10 @@ footer {
         <div id="map-sr" class="stockist-map"></div>
         <ul class="stockist-list">
           <li>
-            <a href="https://share.google/sCio67ckRIIZn4opl" target="_blank" rel="noopener">
+            <a href="https://maps.app.goo.gl/ZH6rVrk8nZbtpr7P6" target="_blank" rel="noopener">
               <span class="stockist-num">1</span>
               <span class="store-name">Kabas Concept Store</span>
               <span class="store-addr">200 Pokambor Avenue</span>
-              <span class="store-dir">↗ Maps</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://share.google/m0FVpEJN0SzjwnNZf" target="_blank" rel="noopener">
-              <span class="stockist-num">2</span>
-              <span class="store-name">Angkor National Museum</span>
-              <span class="store-addr">Gift Shop · 968 Sivutha Blvd</span>
-              <span class="store-dir">↗ Maps</span>
             </a>
           </li>
         </ul>
@@ -1950,13 +1937,13 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.562, 104.929], 13);
   L.tileLayer(tiles, tileOpts).addTo(ppMap);
   [
-    [11.566023, 104.927800, 1, 'Kabas Concept Store',     '#65 Street 178'],
-    [11.575292, 104.926872, 2, "L'Épicerie Gourmet Food", 'St 51, Phnom Penh'],
-    [11.567266, 104.931151, 3, 'Souvenir Station',         'Sisowath Quay'],
-    [11.548626, 104.932560, 4, 'NyoNyum Shop',            'AEON Mall 1'],
-  ].forEach(([lat, lng, n, name, addr]) => {
+    [11.566023, 104.927800, 1, 'Kabas',                   '#65 Street 178',        'left'],
+    [11.575292, 104.926872, 2, "L'Épicerie Gourmet Food", 'St 51, Phnom Penh',     'right'],
+    [11.567266, 104.931151, 3, 'Souvenir Station',         'Sisowath Quay',         'right'],
+    [11.548626, 104.932560, 4, 'NyoNyum Shop',            'AEON Mall 1',           'right'],
+  ].forEach(([lat, lng, n, name, addr, dir]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
-      .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
+      .bindTooltip(name, { permanent: true, direction: dir, className: 'map-label', offset: dir === 'left' ? [-14, 0] : [14, 0] })
       .bindPopup(`<strong>${name}</strong><br>${addr}`)
       .addTo(ppMap);
   });
@@ -1965,8 +1952,7 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.360, 103.857], 14);
   L.tileLayer(tiles, tileOpts).addTo(srMap);
   [
-    [13.354011, 103.855887, 1, 'Kabas Concept Store',    '200 Pokambor Avenue'],
-    [13.366400, 103.859500, 2, 'Angkor National Museum', '968 Sivutha Blvd'],
+    [13.354011, 103.855887, 1, 'Kabas Concept Store', '200 Pokambor Avenue'],
   ].forEach(([lat, lng, n, name, addr]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
       .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
