@@ -1947,13 +1947,13 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   }
 
   // ── Phnom Penh ──
-  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.570, 104.929], 14);
+  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.562, 104.929], 13);
   L.tileLayer(tiles, tileOpts).addTo(ppMap);
   [
     [11.566023, 104.927800, 1, 'Kabas Concept Store',     '#65 Street 178'],
     [11.575292, 104.926872, 2, "L'Épicerie Gourmet Food", 'St 51, Phnom Penh'],
-    [11.567001, 104.931148, 3, 'Souvenir Station',         'Street 178'],
-    [11.567101, 104.931248, 4, 'NyoNyum Shop',            'AEON Mall 1'],
+    [11.567266, 104.931151, 3, 'Souvenir Station',         'Sisowath Quay'],
+    [11.548626, 104.932560, 4, 'NyoNyum Shop',            'AEON Mall 1'],
   ].forEach(([lat, lng, n, name, addr]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
       .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
