@@ -588,6 +588,20 @@ nav.scrolled {
 .leaflet-popup-content strong { color: #d0a869; display: block; margin-bottom: 2px; }
 .leaflet-popup-tip { background: rgba(208,168,105,0.4); }
 .leaflet-popup-close-button { color: rgba(208,168,105,0.6) !important; }
+/* Leaflet permanent label */
+.leaflet-tooltip.map-label {
+  background: rgba(9,10,12,0.82);
+  border: 1px solid rgba(208,168,105,0.45);
+  color: #d0a869;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  box-shadow: none;
+  white-space: nowrap;
+}
+.leaflet-tooltip.map-label::before { border-right-color: rgba(208,168,105,0.45); }
 @media (max-width: 900px) {
   .stockists-grid { grid-template-columns: 1fr; gap: 3.5rem; }
 }
@@ -1933,28 +1947,30 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   }
 
   // ── Phnom Penh ──
-  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.551, 104.928], 14);
+  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.570, 104.929], 14);
   L.tileLayer(tiles, tileOpts).addTo(ppMap);
   [
-    [11.5564, 104.9282, 1, 'Kabas Concept Store',      '#65 Street 178'],
-    [11.5535, 104.9178, 2, "L'Épicerie Gourmet Food",  'Phnom Penh'],
-    [11.5486, 104.9327, 3, 'NyoNyum Shop',             'AEON Mall 1, St 432'],
-    [11.5442, 104.9292, 4, 'Souvenir Station',          'Street 178'],
+    [11.566023, 104.927800, 1, 'Kabas Concept Store',     '#65 Street 178'],
+    [11.575292, 104.926872, 2, "L'Épicerie Gourmet Food", 'St 51, Phnom Penh'],
+    [11.567001, 104.931148, 3, 'Souvenir Station',         'Street 178'],
+    [11.567101, 104.931248, 4, 'NyoNyum Shop',            'AEON Mall 1'],
   ].forEach(([lat, lng, n, name, addr]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
-      .bindPopup(`<strong>${name}</strong>${addr}`)
+      .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
+      .bindPopup(`<strong>${name}</strong><br>${addr}`)
       .addTo(ppMap);
   });
 
   // ── Siem Reap ──
-  const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.362, 103.857], 14);
+  const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.360, 103.857], 14);
   L.tileLayer(tiles, tileOpts).addTo(srMap);
   [
-    [13.3560, 103.8560, 1, 'Kabas Concept Store',    '200 Pokambor Avenue'],
-    [13.3664, 103.8595, 2, 'Angkor National Museum', 'Gift Shop · 968 Sivutha Blvd'],
+    [13.354011, 103.855887, 1, 'Kabas Concept Store',    '200 Pokambor Avenue'],
+    [13.366400, 103.859500, 2, 'Angkor National Museum', '968 Sivutha Blvd'],
   ].forEach(([lat, lng, n, name, addr]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
-      .bindPopup(`<strong>${name}</strong>${addr}`)
+      .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
+      .bindPopup(`<strong>${name}</strong><br>${addr}`)
       .addTo(srMap);
   });
 })();
