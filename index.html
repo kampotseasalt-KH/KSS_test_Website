@@ -53,6 +53,7 @@ src="https://www.facebook.com/tr?id=1026015586456185&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -499,6 +500,96 @@ nav.scrolled {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* ── WHERE TO FIND US ────────────────────────────── */
+#stockists {
+  padding: 7rem 0;
+  background: #0d0e10;
+  position: relative;
+}
+.stockists-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3.5rem;
+}
+.stockist-city-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.01em;
+}
+.stockist-city-title em { font-style: italic; color: var(--gold-lt); }
+.stockist-map {
+  width: 100%;
+  height: 300px;
+  border: 1px solid rgba(208,168,105,0.35);
+  border-bottom: 2px solid rgba(208,168,105,0.55);
+  overflow: hidden;
+  margin-bottom: 1.4rem;
+}
+.stockist-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  counter-reset: store-counter;
+}
+.stockist-list li {
+  counter-increment: store-counter;
+  border-bottom: 1px solid rgba(208,168,105,0.12);
+}
+.stockist-list li:first-child { border-top: 1px solid rgba(208,168,105,0.12); }
+.stockist-list a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.stockist-list a:hover { color: var(--gold); }
+.stockist-num {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(208,168,105,0.15);
+  border: 1px solid rgba(208,168,105,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+  color: var(--gold); letter-spacing: 0;
+  transition: background 0.2s;
+}
+.stockist-list a:hover .stockist-num { background: var(--gold); color: var(--dark); }
+.store-name {
+  font-family: var(--sans); font-size: 0.83rem; font-weight: 400;
+  color: var(--text); flex: 1;
+  transition: color 0.2s;
+}
+.stockist-list a:hover .store-name { color: var(--gold); }
+.store-addr {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 300;
+  color: var(--muted); letter-spacing: 0.03em;
+}
+.store-dir {
+  font-family: var(--sans); font-size: 0.6rem;
+  color: rgba(208,168,105,0.55); letter-spacing: 0.08em;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.stockist-list a:hover .store-dir { color: var(--gold); }
+/* Leaflet popup override */
+.leaflet-popup-content-wrapper {
+  background: #13151a; border: 1px solid rgba(208,168,105,0.4);
+  border-radius: 2px; box-shadow: none; color: #e8e2d9;
+}
+.leaflet-popup-content { font-family: 'Jost', sans-serif; font-size: 0.78rem; line-height: 1.5; margin: 10px 14px; }
+.leaflet-popup-content strong { color: #d0a869; display: block; margin-bottom: 2px; }
+.leaflet-popup-tip { background: rgba(208,168,105,0.4); }
+.leaflet-popup-close-button { color: rgba(208,168,105,0.6) !important; }
+@media (max-width: 900px) {
+  .stockists-grid { grid-template-columns: 1fr; gap: 3.5rem; }
 }
 
 /* ── GIFT BOX SECTION ─────────────────────────────── */
@@ -1231,6 +1322,87 @@ footer {
 </section>
 
 
+<!-- ── WHERE TO FIND US ─────────────────────────────── -->
+<section id="stockists">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="eyebrow">Availability</span>
+      <h2 class="section-title">Where to <em>Find Us</em></h2>
+      <p class="section-sub">Available at select gourmet boutiques, concept stores, and cultural institutions.</p>
+    </div>
+
+    <div class="stockists-grid">
+
+      <!-- PHNOM PENH -->
+      <div class="stockist-city reveal delay-1">
+        <h3 class="stockist-city-title">In <em>Phnom Penh</em></h3>
+        <div id="map-pp" class="stockist-map"></div>
+        <ul class="stockist-list">
+          <li>
+            <a href="https://share.google/pJODpUPHIClPRUxLA" target="_blank" rel="noopener">
+              <span class="stockist-num">1</span>
+              <span class="store-name">Kabas Concept Store</span>
+              <span class="store-addr">#65 Street 178</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://share.google/5O7cMCBVK0sDSxQhO" target="_blank" rel="noopener">
+              <span class="stockist-num">2</span>
+              <span class="store-name">L'Épicerie Gourmet Food</span>
+              <span class="store-addr">Phnom Penh</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://share.google/2pY6JKsKBSuu52JT5" target="_blank" rel="noopener">
+              <span class="stockist-num">3</span>
+              <span class="store-name">NyoNyum Shop</span>
+              <span class="store-addr">AEON Mall 1</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.google.com/?q=Souvenir+Station+Phnom+Penh+Street+178" target="_blank" rel="noopener">
+              <span class="stockist-num">4</span>
+              <span class="store-name">Souvenir Station</span>
+              <span class="store-addr">Street 178</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SIEM REAP -->
+      <div class="stockist-city reveal delay-2">
+        <h3 class="stockist-city-title">In <em>Siem Reap</em></h3>
+        <div id="map-sr" class="stockist-map"></div>
+        <ul class="stockist-list">
+          <li>
+            <a href="https://share.google/sCio67ckRIIZn4opl" target="_blank" rel="noopener">
+              <span class="stockist-num">1</span>
+              <span class="store-name">Kabas Concept Store</span>
+              <span class="store-addr">200 Pokambor Avenue</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://share.google/m0FVpEJN0SzjwnNZf" target="_blank" rel="noopener">
+              <span class="stockist-num">2</span>
+              <span class="store-name">Angkor National Museum</span>
+              <span class="store-addr">Gift Shop · 968 Sivutha Blvd</span>
+              <span class="store-dir">↗ Maps</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- ── STORY ──────────────────────────────────────────── -->
 <section id="story">
   <div class="container">
@@ -1740,6 +1912,51 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
     `;
     layer.appendChild(el);
   }
+})();
+</script>
+
+<!-- ── Leaflet maps ── -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+  if (typeof L === 'undefined') return;
+
+  const tiles = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+  const tileOpts = { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>', subdomains: 'abcd', maxZoom: 19 };
+
+  function goldMarker(n) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="width:24px;height:24px;background:#d0a869;border-radius:50%;border:2px solid #f3e6d0;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;color:#090a0c;box-shadow:0 2px 6px rgba(0,0,0,0.5);">${n}</div>`,
+      iconSize: [24, 24], iconAnchor: [12, 12], popupAnchor: [0, -14]
+    });
+  }
+
+  // ── Phnom Penh ──
+  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.551, 104.928], 14);
+  L.tileLayer(tiles, tileOpts).addTo(ppMap);
+  [
+    [11.5564, 104.9282, 1, 'Kabas Concept Store',      '#65 Street 178'],
+    [11.5535, 104.9178, 2, "L'Épicerie Gourmet Food",  'Phnom Penh'],
+    [11.5486, 104.9327, 3, 'NyoNyum Shop',             'AEON Mall 1, St 432'],
+    [11.5442, 104.9292, 4, 'Souvenir Station',          'Street 178'],
+  ].forEach(([lat, lng, n, name, addr]) => {
+    L.marker([lat, lng], { icon: goldMarker(n) })
+      .bindPopup(`<strong>${name}</strong>${addr}`)
+      .addTo(ppMap);
+  });
+
+  // ── Siem Reap ──
+  const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.362, 103.857], 14);
+  L.tileLayer(tiles, tileOpts).addTo(srMap);
+  [
+    [13.3560, 103.8560, 1, 'Kabas Concept Store',    '200 Pokambor Avenue'],
+    [13.3664, 103.8595, 2, 'Angkor National Museum', 'Gift Shop · 968 Sivutha Blvd'],
+  ].forEach(([lat, lng, n, name, addr]) => {
+    L.marker([lat, lng], { icon: goldMarker(n) })
+      .bindPopup(`<strong>${name}</strong>${addr}`)
+      .addTo(srMap);
+  });
 })();
 </script>
 
