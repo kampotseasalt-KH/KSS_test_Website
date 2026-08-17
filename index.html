@@ -1396,6 +1396,27 @@ footer {
               <span class="store-addr">200 Pokambor Avenue</span>
             </a>
           </li>
+          <li>
+            <a href="https://maps.app.goo.gl/Mf1VJ9Xum7Y1T8e57" target="_blank" rel="noopener">
+              <span class="stockist-num">2</span>
+              <span class="store-name">Angkor Market III</span>
+              <span class="store-addr">Sivutha Blvd</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.app.goo.gl/YN9fXaUaw7g6CqYbA" target="_blank" rel="noopener">
+              <span class="stockist-num">3</span>
+              <span class="store-name">Angkor National Museum</span>
+              <span class="store-addr">968 Sihanouk Ave</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.app.goo.gl/dF423SNJCW4LqM3S7" target="_blank" rel="noopener">
+              <span class="stockist-num">4</span>
+              <span class="store-name">Kingdom Taste</span>
+              <span class="store-addr">Angkor Night Market St</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -1949,13 +1970,16 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   });
 
   // ── Siem Reap ──
-  const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.360, 103.857], 14);
+  const srMap = L.map('map-sr', { scrollWheelZoom: false }).setView([13.361, 103.857], 14);
   L.tileLayer(tiles, tileOpts).addTo(srMap);
   [
-    [13.354011, 103.855887, 1, 'Kabas Concept Store', '200 Pokambor Avenue'],
-  ].forEach(([lat, lng, n, name, addr]) => {
+    [13.354011, 103.855887, 1, 'Kabas Concept Store',    '200 Pokambor Avenue',      'right'],
+    [13.362376, 103.855616, 2, 'Angkor Market III',      'Sivutha Blvd',             'left'],
+    [13.366728, 103.860516, 3, 'Angkor National Museum', '968 Sihanouk Ave',         'right'],
+    [13.355993, 103.852623, 4, 'Kingdom Taste',          'Angkor Night Market St',   'left'],
+  ].forEach(([lat, lng, n, name, addr, dir]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
-      .bindTooltip(name, { permanent: true, direction: 'right', className: 'map-label', offset: [14, 0] })
+      .bindTooltip(name, { permanent: true, direction: dir, className: 'map-label', offset: dir === 'left' ? [-14, 0] : [14, 0] })
       .bindPopup(`<strong>${name}</strong><br>${addr}`)
       .addTo(srMap);
   });
