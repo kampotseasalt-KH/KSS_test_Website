@@ -619,12 +619,28 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.5rem 3rem;
+  gap: 1rem 1.75rem;
+}
+.partners-logos a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.partners-logos a:hover {
+  opacity: 1;
+  transform: scale(1.06);
 }
 .partners-logos img {
-  height: 48px;
+  height: 64px;
   width: auto;
   object-fit: contain;
+}
+.partners-logos img.logo-museum {
+  height: auto;
+  width: 64px;
+  max-height: 64px;
 }
 @media (max-width: 900px) {
   .stockists-grid { grid-template-columns: 1fr; gap: 3.5rem; }
@@ -1459,15 +1475,33 @@ footer {
     </div>
 
     <div class="partners-logos reveal">
-      <img src="Brand_assets/LogosAll/AEON logo.png"                alt="AEON Mall">
-      <img src="Brand_assets/LogosAll/Angkor Market.png"            alt="Angkor Market III">
-      <img src="Brand_assets/LogosAll/angkor national museum.jpg"   alt="Angkor National Museum">
-      <img src="Brand_assets/LogosAll/Delishop.jpg"                 alt="Delishop">
-      <img src="Brand_assets/LogosAll/Kabas.jpg"                    alt="Kabas">
-      <img src="Brand_assets/LogosAll/Kingdom taste.jpg"            alt="Kingdom Taste">
-      <img src="Brand_assets/LogosAll/L'epicerie_Green.jpg"         alt="L'Épicerie">
-      <img src="Brand_assets/LogosAll/NyoNyum.jpg"                  alt="NyoNyum">
-      <img src="Brand_assets/LogosAll/SouvenirStation.jpg"          alt="Souvenir Station">
+      <a href="https://www.google.com/search?q=nyonyum&rlz=1C1GCEA_enKH1134KH1135&sca_esv=565f6365398add4e&biw=1222&bih=845&sxsrf=APpeQnu1IdvhRGq8DYkKX_jN3_1gE0KXow%3A1787205836720&ei=zJiGasXBK-unhvcP8IKx6Qs&ved=0ahUKEwjF16bIxK6WAxXrk-EIHXBBLL0Q4dUDCBA&uact=5&oq=nyonyum&gs_lp=Egxnd3Mtd2l6LXNlcnAiB255b255dW0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAuGA0YgAQyBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAuGIAEGA1InEpQhQ5YvEhwBHgAkAEAmAGLAaAB6QaqAQMyLja4AQPIAQD4AQGYAgygAqYHwgIOEC4YgAQYxwEYrwEYsAPCAgsQABiABBiKBRiRAsICERAuGIAEGIoFGJECGMcBGK8BwgIEEC4YA8ICCxAAGIAEGLEDGIMBwgIKEAAYgAQYigUYQ8ICChAuGIAEGIoFGEPCAgUQABiABMICChAuGEMYgAQYigXCAgUQLhiABMICGRAuGEMYgAQYigUYlwUY3AQY3gQY4ATYAQGYAwCIBgGQBgG6BgYIARABGBSSBwM0LjigB_xOsgcDMC44uAeSB8IHBjAuMS4xMcgHMYAIAQ&sclient=gws-wiz-serp#sv=CAwSuwEKBmxjbF9wdhIuCgNwdnESJ0Nnd3ZaeTh4TVdObVozbzVZbmtpRFFvSGJubHZibmwxYlJBQ0dBTRJLCgNscWkSRENnZHVlVzl1ZVhWdFNOM0t2TmV0Z1lDQUNGb05FQUFZQUNJSGJubHZibmwxYlpJQkRuTnZkWFpsYm1seVgzTjBiM0psEhIKA3RicxILbHJmOiEzc0lBRT0SDAoBcRIHbnlvbnl1bRoSbG9jYWwtcGxhY2Utdmlld2VyGAoglNGUnwU" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/AEON logo.png" alt="AEON Mall">
+      </a>
+      <a href="https://www.google.com/search?q=Angkor+Market+III&sca_esv=565f6365398add4e&rlz=1C1GCEA_enKH1134KH1135&biw=1744&bih=872&sxsrf=APpeQntsALDh4dwRwwwQZLdv7Po-hh2TTQ%3A1787206360985&ei=2JqGaq7JO5aihvcP0svb0Q4&ved=0ahUKEwiulaXCxq6WAxUWkeEIHdLlNuoQ4dUDCBA&uact=5&oq=Angkor+Market+III&gs_lp=Egxnd3Mtd2l6LXNlcnAiEUFuZ2tvciBNYXJrZXQgSUlJMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yCxAAGIAEGIoFGIYDSL8cUMALWMALcAF4AZABAJgBYqABYqoBATG4AQPIAQD4AQL4AQGYAgKgAmzCAgoQABhHGNYEGLADmAMAiAYBkAYFkgcDMS4xoAfWBLIHAzAuMbgHaMIHAzItMsgHB4AIAQ&sclient=gws-wiz-serp#sv=CAwS4AIKBmxjbF9wdhI9CgNwdnESNkNnMHZaeTh4TVhsc2NUUTRiSHBuSWhjS0VVRnVaMnR2Y2lCTllYSnJaWFFnU1VsSkVBSVlBdxLWAQoDbHFpEs4BQ2hGQmJtZHJiM0lnVFdGeWEyVjBJRWxKU1VqT2w1SGl5cjJBZ0FoYUh4QUFFQUVRQWhnQUdBRVlBaUlSWVc1bmEyOXlJRzFoY210bGRDQnBhV21TQVF0emRYQmxjbTFoY210bGRKb0JSRU5pT1VSUlZXeFNVVlZPZGxwRlRtOWtTR3hxVW1wc2RsUXllRk5oUm1SelUxUlNhMUl5VFhsV1ZWcHZVbXN4UjJORk1WWldWMmh3V1d0b2QxRnNjSE5TVWtGQy1nRUVDQUFRSWcSEgoDdGJzEgtscmY6ITNzSUFFPRIWCgFxEhFBbmdrb3IgTWFya2V0IElJSRoSbG9jYWwtcGxhY2Utdmlld2VyGAog56rFvA4" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/Angkor Market.png" alt="Angkor Market III">
+      </a>
+      <a href="https://www.google.com/search?q=angkor+national+museum+siem+reap&sca_esv=565f6365398add4e&rlz=1C1GCEA_enKH1134KH1135&biw=1744&bih=872&sxsrf=APpeQnsQcF4fO55Uky6Ok-jP7UwBnD-e-g%3A1787206376092&ei=6JqGar6gBYqrhvcPu5iX0Aw&gs_ssp=eJwFwcEJgDAMAED8OkU-vk2pqdQRXEJCSEW0UVoF3d67tu1zj599kRZspg5f7xy6EUUEg_iYJnxjGgIOXogCcVI_A9u6nwWM7-00PiA_VZ8MddMMRfn6ARE7GmM&oq=Angkor+National+&gs_lp=Egxnd3Mtd2l6LXNlcnAiEEFuZ2tvciBOYXRpb25hbCAqAggDMgsQABiABBiKBRiRAjILEAAYgAQYigUYkQIyBRAAGIAEMhEQLhiABBiKBRiRAhjHARivATILEAAYgAQYigUYkQIyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIgEC4YgAQYigUYkQIYxwEYrwEYlwUY3AQY3gQY4ATYAQFIv9ECUPqzAljSwQJwAngBkAEAmAF3oAGEB6oBAzUuNLgBAcgBAPgBAZgCDKACmhbCAgoQABhHGNYEGLADwgILEC4YgAQYxwEYrwGYAwCIBgGQBgW6BgYIARABGBSSBwc1LjYuNy0xoAeTbLIHAzMuNrgHuwfCBwYwLjIuMTDIBzOACAE&sclient=gws-wiz-serp" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/angkor national museum.jpg" alt="Angkor National Museum" class="logo-museum">
+      </a>
+      <a href="https://delishop.asia/?locale=en" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/Delishop.jpg" alt="Delishop">
+      </a>
+      <a href="https://share.google/pJODpUPHIClPRUxLA" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/Kabas.jpg" alt="Kabas">
+      </a>
+      <a href="https://www.google.com/search?q=kingdom+taste+siem+reap&rlz=1C1GCEA_enKH1134KH1135&biw=1744&bih=872&sca_esv=565f6365398add4e&sxsrf=APpeQnv5oVIgOX9qbzTwplkTpE7yDY5EKg%3A1787206581464&ei=tZuGauLwG7i3hvcPstXbwAk&oq=Kingdom+taste&gs_lp=Egxnd3Mtd2l6LXNlcnAiDUtpbmdkb20gdGFzdGUqAggBMgkQABgHGB4YsAMyCBAAGIAEGLADMgcQABgeGLADMgcQABgeGLADMgkQABgFGB4YsAMyCRAAGAgYHhiwAzIJEAAYCBgeGLADMgkQABgIGB4YsAMyCRAAGAgYHhiwAzIJEAAYCBgeGLADSK4LUABYAHABeACQAQCYAVWgAVWqAQExuAEByAEAmAIBoAIEmAMAiAYBkAYKkgcBMaAHoweyBwC4BwDCBwMyLTHIBwOACAE&sclient=gws-wiz-serp" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/Kingdom taste.jpg" alt="Kingdom Taste">
+      </a>
+      <a href="https://www.google.com/search?q=l%27epicerie+phnom+penh&sca_esv=565f6365398add4e&rlz=1C1GCEA_enKH1134KH1135&sxsrf=APpeQnsp7AiSAeVjSf7PGsHIdrVM36f9vg%3A1787205831413&ei=x5iGatvrGPSu4-EPoLOEsQQ&biw=871&bih=845&gs_ssp=eJzj4tVP1zc0rDAqzjUyNUs2YLRSNagwNjSwNDU0MDA0NE6xMEsztzKoSE40TrUwSzNJNjRKMbI0NvMSzVFPLchMTi3KTFUoyMjLz1UoSM3LAAAZJxYh&oq=l%27epicerie+&gs_lp=Egxnd3Mtd2l6LXNlcnAiC2wnZXBpY2VyaWUgKgIIADILEC4YgAQYxwEYrwEyChAAGIAEGIoFGEMyCxAAGIAEGIoFGJECMgUQABiABDIKEAAYgAQYigUYQzIFEAAYgAQyCxAAGIAEGIoFGJECMgoQABiABBiKBRhDMgsQABiABBiKBRiRAjILEAAYgAQYigUYkQJIrAtQ3wFY3wFwAXgBkAEAmAGHAaABhwGqAQMwLjG4AQHIAQD4AQGYAgKgApYBwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAOYAwCIBgGQBgySBwMxLjGgB6ULsgcDMC4xuAeQAcIHAzItMsgHDIAIAQ&sclient=gws-wiz-serp" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/L'epicerie_Green.jpg" alt="L'Épicerie">
+      </a>
+      <a href="https://www.google.com/search?q=nyonyum&rlz=1C1GCEA_enKH1134KH1135&sca_esv=565f6365398add4e&biw=1222&bih=845&sxsrf=APpeQnu1IdvhRGq8DYkKX_jN3_1gE0KXow%3A1787205836720&ei=zJiGasXBK-unhvcP8IKx6Qs&ved=0ahUKEwjF16bIxK6WAxXrk-EIHXBBLL0Q4dUDCBA&uact=5&oq=nyonyum&gs_lp=Egxnd3Mtd2l6LXNlcnAiB255b255dW0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAuGA0YgAQyBxAAGIAEGA0yBxAAGIAEGA0yBxAAGIAEGA0yBxAuGIAEGA1InEpQhQ5YvEhwBHgAkAEAmAGLAaAB6QaqAQMyLja4AQPIAQD4AQGYAgygAqYHwgIOEC4YgAQYxwEYrwEYsAPCAgsQABiABBiKBRiRAsICERAuGIAEGIoFGJECGMcBGK8BwgIEEC4YA8ICCxAAGIAEGLEDGIMBwgIKEAAYgAQYigUYQ8ICChAuGIAEGIoFGEPCAgUQABiABMICChAuGEMYgAQYigXCAgUQLhiABMICGRAuGEMYgAQYigUYlwUY3AQY3gQY4ATYAQGYAwCIBgGQBgG6BgYIARABGBSSBwM0LjigB_xOsgcDMC44uAeSB8IHBjAuMS4xMcgHMYAIAQ&sclient=gws-wiz-serp#sv=CAwSuwEKBmxjbF9wdhIuCgNwdnESJ0Nnd3ZaeTh4TVdObVozbzVZbmtpRFFvSGJubHZibmwxYlJBQ0dBTRJLCgNscWkSRENnZHVlVzl1ZVhWdFNOM0t2TmV0Z1lDQUNGb05FQUFZQUNJSGJubHZibmwxYlpJQkRuTnZkWFpsYm1seVgzTjBiM0psEhIKA3RicxILbHJmOiEzc0lBRT0SDAoBcRIHbnlvbnl1bRoSbG9jYWwtcGxhY2Utdmlld2VyGAoglNGUnwU" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/NyoNyum.jpg" alt="NyoNyum">
+      </a>
+      <a href="https://www.google.com/search?q=souvenir+station&rlz=1C1GCEA_enKH1134KH1135&sca_esv=565f6365398add4e&biw=1222&bih=845&sxsrf=APpeQnuD8ObDjXaXUq38uerSdHhrrgzBgQ%3A1787206053962&ei=pZmGavefOs6fhvcPjeSUGA&gs_ssp=eJzj4tVP1zc0LDFMqsgwy60yYLRSNagwNjSwNDVMNTQxN0k2NTJLsjKoMLS0NDdOMrEwNrC0SDIxTPQSKM4vLUvNyyxSKC5JLMnMzwMAyEEU9Q&oq=souvenir+sta&gs_lp=Egxnd3Mtd2l6LXNlcnAiDHNvdXZlbmlyIHN0YSoCCAAyCxAuGIAEGMcBGK8BMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMhoQLhiABBjHARivARiXBRjcBBjeBBjgBNgBAUiuMFAAWK4gcAB4AJABAJgBdqABmgmqAQM4LjS4AQPIAQD4AQGYAg2gAp4WwgILEC4YgAQYigUYkQLCAgsQABiABBiKBRiRAsICERAuGIAEGIoFGJECGMcBGK8BwgIIEAAYgAQYsQPCAg4QLhiABBiKBRixAxiDAcICCxAAGIAEGIoFGLEDwgILEAAYgAQYsQMYgwHCAhoQLhiABBiKBRiRAhiXBRjcBBjeBBjgBNgBAcICDhAAGIAEGIoFGJECGLEDwgIOEC4YgAQYsQMYxwEY0QPCAggQLhiABBixA8ICBRAuGIAEwgIIEAAYgAQYyQPCAggQABiABBiSA5gDALoGBggBEAEYFJIHBzQuOC43LTGgB7h0sgcDNC44uAfYCcIHBjAuMS4xMsgHMYAIAQ&sclient=gws-wiz-serp" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/SouvenirStation.jpg" alt="Souvenir Station">
+      </a>
     </div>
 
   </div>
