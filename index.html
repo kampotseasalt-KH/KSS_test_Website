@@ -602,6 +602,25 @@ nav.scrolled {
   white-space: nowrap;
 }
 .leaflet-tooltip.map-label::before { border-right-color: rgba(208,168,105,0.45); }
+.partners-logos {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(208,168,105,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+}
+.partners-logos img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) invert(1);
+  opacity: 0.55;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.partners-logos img:hover { opacity: 1; filter: grayscale(0) invert(0); }
 @media (max-width: 900px) {
   .stockists-grid { grid-template-columns: 1fr; gap: 3.5rem; }
 }
@@ -1421,6 +1440,19 @@ footer {
       </div>
 
     </div>
+
+    <div class="partners-logos reveal">
+      <img src="Brand_assets/LogosAll/AEON logo.png"                alt="AEON Mall">
+      <img src="Brand_assets/LogosAll/Angkor Market.png"            alt="Angkor Market III">
+      <img src="Brand_assets/LogosAll/angkor national museum.jpg"   alt="Angkor National Museum">
+      <img src="Brand_assets/LogosAll/Delishop.jpg"                 alt="Delishop">
+      <img src="Brand_assets/LogosAll/Kabas.png"                    alt="Kabas">
+      <img src="Brand_assets/LogosAll/Kingdom taste.png"            alt="Kingdom Taste">
+      <img src="Brand_assets/LogosAll/L'epicerie_Green.jpg"         alt="L'Épicerie">
+      <img src="Brand_assets/LogosAll/NyoNyum.jpg"                  alt="NyoNyum">
+      <img src="Brand_assets/LogosAll/SouvenirStation.jpg"          alt="Souvenir Station">
+    </div>
+
   </div>
 </section>
 
