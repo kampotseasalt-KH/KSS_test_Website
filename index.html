@@ -171,9 +171,9 @@ nav.scrolled {
 }
 .page-corner img {
   width: 100%; display: block;
-  filter: invert(1) sepia(1) saturate(2.5) hue-rotate(5deg) brightness(0.85);
+  filter: invert(1) sepia(1) saturate(6) hue-rotate(5deg) brightness(1.05);
   mix-blend-mode: screen;
-  opacity: 0.6;
+  opacity: 0.88;
 }
 .page-corner--tl { top: 10px; left: 10px; }
 .page-corner--br { bottom: 10px; right: 10px; transform: scale(-1); }
@@ -270,12 +270,12 @@ nav.scrolled {
 .hero-tagline {
   font-family: var(--serif); font-size: clamp(0.95rem,2vw,1.15rem);
   font-style: italic; font-weight: 300;
-  color: var(--dim); letter-spacing: 0.04em;
+  color: rgba(243,228,205,0.82); letter-spacing: 0.04em;
   max-width: 400px; line-height: 1.6;
 }
 .hero-sub {
   font-family: var(--sans); font-size: 0.6rem; font-weight: 400;
-  letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted);
+  letter-spacing: 0.35em; text-transform: uppercase; color: rgba(243,228,205,0.50);
 }
 .btn-hero {
   display: inline-block; margin-top: 0.6rem;
@@ -292,7 +292,7 @@ nav.scrolled {
   transform: translateX(-50%); z-index: 4;
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
   font-family: var(--sans); font-size: 0.56rem; letter-spacing: 0.3em;
-  text-transform: uppercase; color: var(--muted);
+  text-transform: uppercase; color: rgba(243,228,205,0.50);
   animation: bounceY 2.4s ease-in-out infinite;
 }
 .scroll-hint::after {
