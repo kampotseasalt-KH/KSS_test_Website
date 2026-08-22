@@ -136,9 +136,11 @@ nav.scrolled {
 .nav-links a {
   font-family: var(--sans); font-size: 0.68rem; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
-  color: rgba(34,22,8,0.58); transition: color 0.3s;
+  color: rgba(243,228,205,0.80); transition: color 0.3s;
 }
 .nav-links a:hover { color: var(--gold-lt); }
+nav.scrolled .nav-links a { color: rgba(34,22,8,0.65); }
+nav.scrolled .nav-links a:hover { color: var(--gold); }
 
 .nav-cta {
   font-family: var(--sans); font-size: 0.66rem; font-weight: 500;
@@ -159,7 +161,7 @@ nav.scrolled {
   position: relative; height: 100vh; min-height: 640px;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  background: #8e7e6e;
+  background: #0e0c0d;
 }
 
 /* ── PAGE CORNER MOTIFS ──────────────────────────── */
@@ -171,9 +173,19 @@ nav.scrolled {
 }
 .page-corner img {
   width: 100%; display: block;
-  filter: invert(1) sepia(1) saturate(6) hue-rotate(5deg) brightness(1.05);
+  visibility: hidden;
+}
+.page-corner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #f4dd7f;
+  -webkit-mask-image: url('Brand_assets/MOTIFS_CORNERS_03.png');
+  mask-image: url('Brand_assets/MOTIFS_CORNERS_03.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
   mix-blend-mode: screen;
-  opacity: 0.88;
+  opacity: 0.48;
 }
 .page-corner--tl { top: 10px; left: 10px; }
 .page-corner--br { bottom: 10px; right: 10px; transform: scale(-1); }
@@ -268,13 +280,13 @@ nav.scrolled {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 .hero-tagline {
-  font-family: var(--serif); font-size: clamp(0.95rem,2vw,1.15rem);
+  font-family: var(--serif); font-size: clamp(1.15rem,2.4vw,1.45rem);
   font-style: italic; font-weight: 300;
   color: rgba(243,228,205,0.82); letter-spacing: 0.04em;
-  max-width: 400px; line-height: 1.6;
+  max-width: 460px; line-height: 1.6;
 }
 .hero-sub {
-  font-family: var(--sans); font-size: 0.6rem; font-weight: 400;
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
   letter-spacing: 0.35em; text-transform: uppercase; color: rgba(243,228,205,0.50);
 }
 .btn-hero {
@@ -1043,7 +1055,7 @@ nav.scrolled {
 
 /* ── FOOTER ───────────────────────────────────────── */
 footer {
-  background: #221608;
+  background: #0e0c0d;
   padding: 4rem 2rem 2.5rem;
   display: flex; flex-direction: column; align-items: center; gap: 2rem;
   text-align: center;
@@ -1264,7 +1276,6 @@ footer {
     <p class="hero-sub">Ancestral Craftsmanship &nbsp;·&nbsp; Premium Fleur de Sel</p>
   </div>
 
-  <div class="scroll-hint">Scroll</div>
 
 </section>
 
