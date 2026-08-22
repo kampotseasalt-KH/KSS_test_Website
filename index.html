@@ -159,7 +159,7 @@ nav.scrolled {
   position: relative; height: 100vh; min-height: 640px;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  background: #f5ede0;
+  background: #9e8e7e;
 }
 
 /* ── PAGE CORNER MOTIFS ──────────────────────────── */
@@ -171,9 +171,9 @@ nav.scrolled {
 }
 .page-corner img {
   width: 100%; display: block;
-  filter: sepia(0.7) saturate(1.8) hue-rotate(5deg) brightness(0.65);
-  mix-blend-mode: multiply;
-  opacity: 0.55;
+  filter: invert(1) sepia(1) saturate(2.5) hue-rotate(5deg) brightness(0.85);
+  mix-blend-mode: screen;
+  opacity: 0.6;
 }
 .page-corner--tl { top: 10px; left: 10px; }
 .page-corner--br { bottom: 10px; right: 10px; transform: scale(-1); }
@@ -198,8 +198,8 @@ nav.scrolled {
   mask-position: center;
 }
 .logo-wrap img {
-  display: block; width: 100%; opacity: 0.07;
-  filter: brightness(0);
+  display: block; width: 100%; opacity: 0.18;
+  filter: brightness(10);
 }
 .logo-ray {
   position: absolute; inset: 0; overflow: hidden;
@@ -213,15 +213,15 @@ nav.scrolled {
   animation: lightRay 15s ease-in-out infinite;
 }
 
-/* Cream vignette — soft edge fade */
+/* Vignette */
 .hero-vignette {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse at 50% 42%, transparent 30%, rgba(220,205,180,0.22) 100%);
+  background: radial-gradient(ellipse at 50% 42%, transparent 28%, rgba(60,40,25,0.30) 100%);
 }
 
-/* Sparkle layer — hidden on cream hero */
+/* Sparkle layer */
 .sparkle-layer {
-  display: none;
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
 }
 
 /* Hero text content */
@@ -252,7 +252,7 @@ nav.scrolled {
   content: '';
   position: absolute; top: -15%; left: 0;
   width: 38%; height: 130%;
-  background: linear-gradient(108deg, transparent 18%, rgba(208,168,105,0.55) 50%, transparent 82%);
+  background: linear-gradient(108deg, transparent 18%, rgba(255,252,200,0.90) 50%, transparent 82%);
   transform: translateX(-180%) skewX(-22deg);
   animation: goldShine 7s cubic-bezier(0.25,0.46,0.45,0.94) infinite;
 }
