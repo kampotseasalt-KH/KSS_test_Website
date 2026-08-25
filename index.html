@@ -1462,6 +1462,13 @@ footer {
               <span class="store-addr">Angkor Night Market St</span>
             </a>
           </li>
+          <li>
+            <a href="https://www.facebook.com/DamnakPharmacyAndMart/" target="_blank" rel="noopener">
+              <span class="stockist-num">5</span>
+              <span class="store-name">Damnak Super Market</span>
+              <span class="store-addr">7 Makara St</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -1475,6 +1482,13 @@ footer {
             <span class="stockist-num">1</span>
             <span class="store-name">Delishop</span>
             <span class="store-addr">delishop.asia</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.kabasconceptstore.com/en/search?q=garuda&_gl=1*x0c72o*_up*MQ..*_ga*MjA2NjA4Mzk1LjE3ODc2NDE1MzU.*_ga_DZ6N4CGZ74*czE3ODc2NDE1MzQkbzEkZzAkdDE3ODc2NDE1MzQkajYwJGwwJGgw" target="_blank" rel="noopener">
+            <span class="stockist-num">2</span>
+            <span class="store-name">Kabas Concept Store</span>
+            <span class="store-addr">kabasconceptstore.com</span>
           </a>
         </li>
       </ul>
@@ -2066,6 +2080,7 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
     [13.362376, 103.855616, 2, 'Angkor Market III',      'Sivutha Blvd',             'left'],
     [13.366728, 103.860516, 3, 'Angkor National Museum', '968 Sihanouk Ave',         'right'],
     [13.355993, 103.852623, 4, 'Kingdom Taste',          'Angkor Night Market St',   'left'],
+    [13.352102, 103.858292, 5, 'Damnak Super Market',    '7 Makara St',              'right'],
   ].forEach(([lat, lng, n, name, addr, dir]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
       .bindTooltip(name, { permanent: true, direction: dir, className: 'map-label', offset: dir === 'left' ? [-14, 0] : [14, 0] })
