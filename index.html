@@ -1426,6 +1426,20 @@ footer {
               <span class="store-addr">178 Samdach Sothearos Blvd (3)</span>
             </a>
           </li>
+          <li>
+            <a href="https://www.facebook.com/borisothnatural/" target="_blank" rel="noopener">
+              <span class="stockist-num">5</span>
+              <span class="store-name">Borisoth Gift &amp; Café</span>
+              <span class="store-addr">AEo-13, Street 330, BKK3</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/borisothnatural/" target="_blank" rel="noopener">
+              <span class="stockist-num">6</span>
+              <span class="store-name">Borisoth Gift &amp; Café</span>
+              <span class="store-addr">290 St. M10, Borey Piphop Thmey, Sen Sok</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -1512,6 +1526,9 @@ footer {
       </a>
       <a href="https://www.google.com/search?q=kingdom+taste+siem+reap&rlz=1C1GCEA_enKH1134KH1135&biw=1744&bih=872&sca_esv=565f6365398add4e&sxsrf=APpeQnv5oVIgOX9qbzTwplkTpE7yDY5EKg%3A1787206581464&ei=tZuGauLwG7i3hvcPstXbwAk&oq=Kingdom+taste&gs_lp=Egxnd3Mtd2l6LXNlcnAiDUtpbmdkb20gdGFzdGUqAggBMgkQABgHGB4YsAMyCBAAGIAEGLADMgcQABgeGLADMgcQABgeGLADMgkQABgFGB4YsAMyCRAAGAgYHhiwAzIJEAAYCBgeGLADMgkQABgIGB4YsAMyCRAAGAgYHhiwAzIJEAAYCBgeGLADSK4LUABYAHABeACQAQCYAVWgAVWqAQExuAEByAEAmAIBoAIEmAMAiAYBkAYKkgcBMaAHoweyBwC4BwDCBwMyLTHIBwOACAE&sclient=gws-wiz-serp" target="_blank" rel="noopener">
         <img src="Brand_assets/LogosAll/Kingdom taste.jpg" alt="Kingdom Taste">
+      </a>
+      <a href="https://www.facebook.com/borisothnatural/" target="_blank" rel="noopener">
+        <img src="Brand_assets/LogosAll/Borisoth.png" alt="Borisoth Gift &amp; Café">
       </a>
       <a href="https://www.facebook.com/DamnakPharmacyAndMart/" target="_blank" rel="noopener">
         <img src="Brand_assets/LogosAll/DANMAK.jpg" alt="Damnak Super Market">
@@ -2061,13 +2078,15 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
   }
 
   // ── Phnom Penh ──
-  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.562, 104.929], 13);
+  const ppMap = L.map('map-pp', { scrollWheelZoom: false }).setView([11.568, 104.912], 12);
   L.tileLayer(tiles, tileOpts).addTo(ppMap);
   [
     [11.566023, 104.927800, 1, 'Kabas',                   '#65 Street 178',        'left'],
     [11.575292, 104.926872, 2, "L'Épicerie Gourmet Food", 'St 51, Phnom Penh',     'right'],
     [11.567266, 104.931151, 3, 'Souvenir Station',         'Sisowath Quay',         'right'],
     [11.548626, 104.932560, 4, 'NyoNyum Shop',            'AEON Mall 1',           'right'],
+    [11.557500, 104.921500, 5, 'Borisoth BKK3',           'St. 330, BKK3',         'left'],
+    [11.592000, 104.888500, 6, 'Borisoth Sen Sok',        'St. M10, Piphop Thmey', 'right'],
   ].forEach(([lat, lng, n, name, addr, dir]) => {
     L.marker([lat, lng], { icon: goldMarker(n) })
       .bindTooltip(name, { permanent: true, direction: dir, className: 'map-label', offset: dir === 'left' ? [-14, 0] : [14, 0] })
