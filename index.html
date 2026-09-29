@@ -2069,8 +2069,8 @@ document.querySelectorAll('.product-card, .story-photo-wrap, .gift-banner-wrap, 
 (function() {
   if (typeof L === 'undefined') return;
 
-  const tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Canvas/MapServer/tile/{z}/{y}/{x}';
-  const tileOpts = { attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ', maxZoom: 16 };
+  const tiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const tileOpts = { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', subdomains: 'abc', maxZoom: 19 };
 
   function goldMarker(n) {
     return L.divIcon({
